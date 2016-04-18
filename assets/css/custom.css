@@ -1,0 +1,47 @@
+.page-header.navbar .page-logo .logo-default {
+    margin: 5px;
+    height: 60px;
+}
+.dashboard-stat2 .display {
+    margin-bottom: 0;
+}
+.dashboard-stat2 .display .number small {
+    font-size: 12px;
+}
+.margintop0 {
+    margin-top: 0;
+}
+.margintop15 {
+    margin-top: 15px;
+}
+.marginbottom5 {
+    margin-bottom: 5px;
+}
+.marginbottom10 {
+    margin-bottom: 10px;
+}
+.padding7 {
+    padding: 7px;
+}
+.paddingtb0 {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+.paddingbottom0 {
+    padding-bottom: 0;
+}
+.height260 {
+    height: 260px;
+}
+.font-larger {
+    font-size: larger;
+}
+.font14 {
+    font-size: 14px !important;
+}
+
+/* KENDO GRID */
+.k-grid-header th.k-header {
+  text-align: center;
+  vertical-align: middle;
+}
