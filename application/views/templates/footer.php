@@ -11,20 +11,39 @@
         </div>
         </section>
         
-        <script src="<?php echo base_url('assets/js').'/jquery.js'; ?>"></script>
-        <script src="<?php echo base_url('assets/js/theme').'/jquery.browser.mobile.js'; ?>"></script>
-        <script src="<?php echo base_url('assets/js').'/bootstrap.min.js'; ?>"></script>
-		<!-- Theme Base, Components and Settings -->
-		<script src="<?php echo base_url('assets/js/theme').'/nanoscroller.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/js/theme').'/bootstrap-datepicker.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/js/theme').'/bootstrap-fileupload.min.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/js/theme').'/pnotify.custom.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/js/theme').'/theme.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/js/theme').'/theme.init.js'; ?>"></script>
-		<!-- Custom -->
-        <script src="<?php echo base_url('assets/js/kendo'); ?>/kendo.all.min.js" type="text/javascript"></script>
-		<script src="<?php echo base_url('assets/js').'/app.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/js').'/app-table.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/js').'/app-table-btn.js'; ?>"></script>
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="container">
+                <div class="page-footer-inner"> <?php echo date('Y').' &copy; '.$this->config->item('title'); ?></div>
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="<?php echo base_url('assets/js').'/jquery.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js').'/bootstrap.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/js.cookie.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/bootstrap-hover-dropdown.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/jquery.slimscroll.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/jquery.blockui.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/jquery.uniform.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/bootstrap-switch.min.js'; ?>" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="<?php echo base_url('assets/js/theme').'/app.min.js'; ?>" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="<?php echo base_url('assets/js/theme').'/layout.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/demo.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/quick-sidebar.min.js'; ?>" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+		<!-- BEGIN KENDO GRID -->
+		<script src="<?php echo base_url('assets/js/kendo'); ?>/kendo.all.min.js" type="text/javascript"></script>
+		<!-- END KENDO GRID -->
+		<script src="<?php echo base_url('assets/js').'/app.js'; ?>" type="text/javascript"></script>
+		<script src="<?php echo base_url('assets/js').'/app-table.js'; ?>" type="text/javascript"></script>
+		<script src="<?php echo base_url('assets/js').'/app-table-btn.js'; ?>" type="text/javascript"></script>
 	</body>
 </html>

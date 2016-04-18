@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin_model extends CI_Model
+class User_model extends CI_Model
 {
-    var $page = 'admin';
+    var $page = 'user';
     
     function __construct()
     {
@@ -13,7 +13,7 @@ class Admin_model extends CI_Model
     function create($params)
     {
         $result = null;
-		$url = $this->config->item('atf_api'). $this->page . '/create';
+		$url = API_HOST . $this->page . '/create';
 		$params = array_merge($params, $this->key);
 		$result = $this->rest->post($url, $params);
 		return $result;
@@ -22,7 +22,7 @@ class Admin_model extends CI_Model
     function delete($params)
     {
         $result = null;
-		$url = $this->config->item('atf_api'). $this->page . '/delete';
+		$url = API_HOST . $this->page . '/delete';
 		$params = array_merge($params, $this->key);
 		$result = $this->rest->post($url, $params);
 		return $result;
@@ -31,7 +31,7 @@ class Admin_model extends CI_Model
     function info($params)
     {
 		$result = null;
-		$url = $this->config->item('atf_api'). $this->page . '/info';
+		$url = API_HOST . $this->page . '/info';
 		$params = array_merge($params, $this->key);
 		$result = $this->rest->get($url, $params);
 		return $result;
@@ -40,7 +40,7 @@ class Admin_model extends CI_Model
     function lists($params)
     {
 		$result = null;
-		$url = $this->config->item('atf_api'). $this->page . '/lists';
+		$url = API_HOST . $this->page . '/lists';
 		$params = array_merge($params, $this->key);
 		$result = $this->rest->get($url, $params);
 		return $result;
@@ -49,7 +49,7 @@ class Admin_model extends CI_Model
     function update($params)
     {
         $result = null;
-		$url = $this->config->item('atf_api'). $this->page . '/update';
+		$url = API_HOST . $this->page . '/update';
 		$params = array_merge($params, $this->key);
 		$result = $this->rest->post($url, $params);
 		return $result;
@@ -58,7 +58,7 @@ class Admin_model extends CI_Model
     function valid($params)
     {
         $result = null;
-		$url = $this->config->item('atf_api'). $this->page . '/valid';
+		$url = API_HOST . $this->page . '/valid';
 		$params = array_merge($params, $this->key);
 		$result = $this->rest->post($url, $params);
 		return $result;

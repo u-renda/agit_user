@@ -1,396 +1,372 @@
-$(function () {
-    resubmit_movie_cast();
-    
-    // Admin Lists
-    $("#grid_admin_lists").kendoGrid({
+function resubmit_dashboard() {
+    $("#grid_dashboard").kendoGrid({
         dataSource: {
             transport: {
                 read: {
-                    url: newPathname + "admin_get",
-                    dataType: "json"
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "Name"
-            }, {
-                field: "Email"
-            }, {
-                field: "Username"
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                sortable: false
-            }
-        ]
-    });
-    
-    // Movie Lists
-    $("#grid_movie_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "movie_get",
-                    dataType: "json"
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "Title"
-            }, {
-                field: "Photo",
-                template: "#= data.Photo #"
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 150,
-                sortable: false
-            }
-        ]
-    });
-    
-    // Product Lists
-    $("#grid_product_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "product_get",
-                    dataType: "json"
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "ProductName",
-                title: "Product Name",
-                template: "#= data.ProductName #",
-                width: 300
-            }, {
-                field: "Price",
-                width: 100
-            }, {
-                field: "Photo",
-                template: "#= data.Photo #",
-                width: 200
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 150,
-                sortable: false
-            }
-        ]
-    });
-    
-    // Product Brand Lists
-    $("#grid_product_brand_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "product_brand_get",
-                    dataType: "json"
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "Name"
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 100,
-                sortable: false
-            }
-        ]
-    });
-    
-    // Product Category Lists
-    $("#grid_product_category_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "product_category_get",
-                    dataType: "json"
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "Name"
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 100,
-                sortable: false
-            }
-        ]
-    });
-    
-    // Member Lists
-    $("#grid_member_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "member_get",
-                    dataType: "json"
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "Name"
-            }, {
-                field: "Email"
-            }, {
-                field: "Gender",
-                width: 100
-            }, {
-                field: "Birthday",
-                width: 100
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 150,
-                sortable: false
-            }
-        ]
-    });
-    
-    // Member Love Lists
-    $("#grid_member_love_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "member_love_get",
-                    dataType: "json",
-                    data: {
-                        id_member : $('#id_member').val(),
-                        id_product : $('#id_product').val()
-					}
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "MemberName",
-                title: "Member Name"
-            }, {
-                field: "ProductName",
-                title: "Product Name"
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 150,
-                sortable: false
-            }
-        ]
-    });
-    
-    // Member Wishlist Lists
-    $("#grid_member_wishlist_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "member_wishlist_get",
-                    dataType: "json",
-                    data: {
-                        id_member : $('#id_member').val(),
-                        id_product : $('#id_product').val()
-					}
-                }
-            },
-            schema: {
-                data: "data",
-                total: "total"
-            },
-            pageSize: 20
-        },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
-        columns: [
-            {
-                field: "No",
-                width: 40,
-                sortable: false
-            }, {
-                field: "MemberName",
-                title: "Member Name"
-            }, {
-                field: "ProductName",
-                title: "Product Name"
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 150,
-                sortable: false
-            }
-        ]
-    });
-});
-
-// Movie Cast Lists
-function resubmit_movie_cast() {
-    $("#grid_movie_cast_lists").kendoGrid({
-        dataSource: {
-            transport: {
-                read: {
-                    url: newPathname + "movie_cast_get",
+                    url: newPathname + "dashboard_get",
                     dataType: "json",
                     type: "POST",
-					data: {
-                        id_movie : $('#id_movie').val()
-					}
+                    data: {
+                        id_project_group : $('#id_project_group').val()
+                    }
                 }
             },
             schema: {
-                data: "data",
-                total: "total"
+                data: "data"
             },
             pageSize: 20
         },
-        sortable: true,
-        pageable: {
-            refresh: true,
-            pageSizes: true,
-            buttonCount: 5
-        },
+        sortable: false,
         columns: [
             {
                 field: "No",
-                width: 40,
-                sortable: false
+                width: 40
             }, {
-                field: "Actor",
-                title: "Cast (Actor Name)",
-                template: "#= data.Actor #"
+                field: "Name"
             }, {
-                field: "Movie"
+                field: "Team"
             }, {
-                field: "Photo",
-                template: "#= data.Photo #"
-            }, {
-                field: "Action",
-                template: "#= data.Action #",
-                width: 100,
-                sortable: false
+                field: "Responsibilities"
             }
         ]
     });
 }
 
-$('#form-movie-cast-lists').submit(function (){
-    resubmit_movie_cast();
-    $('#grid_movie_cast_lists').data('kendoGrid').dataSource.read();
-    $('#grid_movie_cast_lists').data('kendoGrid').refresh();
+$('#form_dashboard').submit(function (){
+    resubmit_dashboard();
+    $('#grid_dashboard').data('kendoGrid').dataSource.read();
+    $('#grid_dashboard').data('kendoGrid').refresh();
     return false;
+});
+
+$(function () {
+    // Dashboard
+    resubmit_dashboard();
+    
+    // Project Monitoring
+    $("#grid_project_monitoring").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "project_monitoring_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        columns: [
+            {
+                field: "ProjectActivities",
+                title: "Project Activities",
+                width: 200
+            }, {
+                field: "Total",
+                width: 60
+            },
+            { field: "Jan" }, { field: "Feb" }, { field: "Mar" }, { field: "Apr"},
+            { field: "May" }, { field: "Jun" }, { field: "Jul" }, { field: "Aug" }, { field: "Sep" },
+            { field: "Oct" }, { field: "Nov" }, { field: "Dec" }
+        ]
+    });
+    
+    // Resource Monitoring
+    $("#grid_resource_monitoring").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "resource_monitoring_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Nama"
+            }, {
+                field: "Projects",
+                    width: 80
+            }, {
+                title: "Projects Status",
+                columns: [{
+                    field: "Activities",
+                    width: 100
+                }, {
+                    field: "Completed",
+                    width: 100
+                }, {
+                    field: "InProgress",
+                    title: "In Progress",
+                    width: 100
+                }, {
+                    field: "Delay",
+                    width: 60
+                }]
+            }, {
+                field: "Overtime",
+                columns: [{
+                    field: "Workday",
+                    width: 80
+                }, {
+                    field: "Holiday",
+                    width: 80
+                }]
+            }
+        ]
+    });
+    
+    // Complaint
+    $("#grid_complaint").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "complaint_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: true,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40,
+                sortable: false
+            }, {
+                field: "IssueName",
+                title: "Issue Name",
+                sortable: false
+            }, {
+                field: "Date",
+                width: 100
+            }, {
+                field: "ResourcesName",
+                title: "Resources Name",
+                sortable: false
+            }, {
+                field: "Type",
+                width: 100,
+                sortable: false
+            }, {
+                field: "Description",
+                sortable: false
+            }, {
+                field: "IssuedBy",
+                title: "Issued By",
+                sortable: false
+            }
+        ]
+    });
+    
+    // Project
+    $("#grid_project").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "project_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: true,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40,
+                sortable: false
+            }, {
+                field: "Projects",
+                template: "#= data.Projects #",
+            }, {
+                field: "Duration",
+                title: "Duration (days)",
+                width: 130
+            }, {
+                field: "Started",
+                width: 100
+            }, {
+                field: "Target",
+                width: 100
+            }, {
+                field: "Finished",
+                width: 100
+            }, {
+                field: "Percent",
+                title: "%",
+                width: 60,
+                sortable: false
+            }, {
+                field: "Status",
+                template: "#= data.Status #",
+                sortable: false,
+                width: 100
+            }
+        ]
+    });
+    
+    // Project Overview
+    $("#grid_project_overview_1").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "project_overview_get_1",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        columns: [
+            {
+                field: "Tasks"
+            }, {
+                field: "Complete",
+                title: "Complete (%)",
+                width: 110
+            }, {
+                field: "Delay",
+                title: "Delay (%)",
+                width: 90
+            }, {
+                field: "RAG",
+                width: 50
+            }
+        ]
+    });
+    
+    $("#grid_project_overview_2").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "project_overview_get_2",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: true,
+        columns: [
+            {
+                field: "No",
+                width: 40,
+                sortable: false
+            }, {
+                field: "TaskName",
+                title: "Task Name"
+            }, {
+                field: "PIC",
+                width: 200,
+                sortable: false
+            }, {
+                field: "Start",
+                width: 100
+            }, {
+                field: "Target",
+                width: 100
+            }, {
+                field: "Finish",
+                width: 100
+            }, {
+                field: "Status",
+                template: "#= data.Status #",
+                width: 100,
+                sortable: false
+            }
+        ]
+    });
+    
+    // Project Timeline
+    $("#grid_project_timeline").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "project_timeline_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20,
+            group: {
+                field: "Group"
+            }
+        },
+        sortable: true,
+        columns: [
+            {
+                field: "TaskName",
+                title: "Task Name",
+                template: "#= data.TaskName #",
+                sortable: false
+            }, {
+                field: "PIC",
+                width: 120,
+                sortable: false
+            }, {
+                field: "Start",
+                width: 100
+            }, {
+                field: "Target",
+                width: 100
+            }, {
+                field: "Finish",
+                width: 100
+            }, {
+                field: "Status",
+                template: "#= data.Status #",
+                sortable: false,
+                width: 110
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                sortable: false,
+                width: 130
+            }
+        ]
+    });
 });

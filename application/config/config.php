@@ -512,12 +512,101 @@ else
     //define('API_HOST', 'http://localhost/activities_monitoring_api/');
 }
 
-$config['atf_api'] = API_HOST;
-$config['api_key'] = 'bd6fb882067e689j02LT3376cd411ee';
+//$config['atf_api'] = API_HOST;
+$config['api_key'] = 'bd6fb882067e6896c1c193376cd419Ir';
 $config['cookie_key'] = '67eOO9w';
 
 $config['title'] = 'Project Management for User';
 
-$config['link_home'] = $config['base_url'].'home';
+$config['link_complaint'] = $config['base_url'].'complaint';
+$config['link_dashboard'] = $config['base_url'].'dashboard';
 $config['link_login'] = $config['base_url'].'login';
 $config['link_logout'] = $config['base_url'].'logout';
+$config['link_project'] = $config['base_url'].'project';
+$config['link_project_create'] = $config['base_url'].'project_create';
+$config['link_project_monitoring'] = $config['base_url'].'project_monitoring';
+$config['link_project_overview'] = $config['base_url'].'project_overview';
+$config['link_project_timeline'] = $config['base_url'].'project_timeline';
+$config['link_resource_monitoring'] = $config['base_url'].'resource_monitoring';
+
+// CODE
+$config['code_active_inactive'] = array(
+    0 => 'inavtive',
+    1 => 'active'
+);
+
+$config['code_closed_open'] = array(
+    0 => 'closed',
+    1 => 'open'
+);
+
+$config['code_project_doc_category'] = array(
+    1 => 'user documentation',
+    2 => 'technical documentation'
+);
+
+$config['code_project_issue_category'] = array(
+    1 => 'critical',
+    2 => 'major',
+    3 => 'minor'
+);
+
+$config['code_project_issue_status'] = array(
+    1 => 'completed',
+    2 => 'in progress'
+);
+
+$config['code_project_status'] = array(
+    1 => 'closed',
+    2 => 'open',
+    3 => 'in progress',
+    4 => 'delay'
+);
+
+$config['code_project_task_group'] = array(
+    1 => 'initiating',
+    2 => 'planning',
+    3 => 'executing',
+    4 => 'closing'
+);
+
+$config['code_project_task_status'] = array(
+    1 => 'completed',
+    2 => 'delay'
+);
+
+$config['code_project_visit_status'] = array(
+    1 => 'requested',
+    2 => 'approved'
+);
+
+$config['code_user_complaint_type'] = array(
+    1 => 'technical',
+    2 => 'non technical'
+);
+
+$config['code_user_overtime_category'] = array(
+    1 => 'workday',
+    2 => 'holiday'
+);
+
+$config['code_user_overtime_status'] = array(
+    1 => 'requested',
+    2 => 'confirmed'
+);
+
+$config['code_user_overtime_type'] = array(
+    1 => 'overtime',
+    2 => 'standby',
+    3 => 'on call',
+    4 => 'piket'
+);
+
+$config['code_user_role'] = array(
+    1 => 'administrator',
+    2 => 'project manager',
+    3 => 'developer',
+    4 => 'quality control',
+    5 => 'viewer',
+    6 => 'project stackholder'
+);

@@ -49,6 +49,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// LOGIN
+$route['login'] = 'login/index';
+$route['logout'] = 'login/logout';
+
+// DASHBOARD
+$route['dashboard'] = 'dashboard/index';
+$route['dashboard_get'] = 'dashboard/dashboard_get';
+$route['project_monitoring'] = 'dashboard/project_monitoring';
+$route['project_monitoring_get'] = 'dashboard/project_monitoring_get';
+$route['resource_monitoring'] = 'dashboard/resource_monitoring';
+$route['resource_monitoring_get'] = 'dashboard/resource_monitoring_get';
+
+// COMPLAINT
+$route['complaint'] = 'complaint/index';
+$route['complaint_get'] = 'complaint/complaint_get';
+
+// PROJECT
+$route['project'] = 'project/index';
+$route['project_create'] = 'project/project_create';
+$route['project_get'] = 'project/project_get';
+$route['project_overview'] = 'project/project_overview';
+$route['project_overview_get_1'] = 'project/project_overview_get_1';
+$route['project_overview_get_2'] = 'project/project_overview_get_2';
+$route['project_timeline'] = 'project/project_timeline';
+$route['project_timeline_get'] = 'project/project_timeline_get';
+
+// EXTRA
+$route['set_session_id_project'] = 'extra/set_session_id_project';

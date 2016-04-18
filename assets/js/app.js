@@ -56,3 +56,21 @@ var newPathname = winOrigin + "/" + winPath[1] + "/";
 	}
 
 }).apply(this, [jQuery]);
+
+function session_id_project(id_project) {
+	var dataString = 'id_project='+ id_project;
+	console.log(id_project);
+	$.ajax(
+	{
+		type: "POST",
+		url: newPathname + 'set_session_id_project',
+		data: dataString
+	}).done(function(msg){
+		if (msg == 'true') {
+			location.href = newPathname + 'project_overview';
+		} else {
+			location.href = newPathname + 'project';
+		}
+	});
+	return false;
+}
