@@ -511,7 +511,7 @@ if(is_bool(LOCALHOST) || LOCALHOST == 'localhost')
 }
 else
 {
-    //define('API_HOST', 'http://localhost/activities_monitoring_api/');
+    //define('API_HOST', 'http://localhost/activities_monitoring_api/');123
 }
 
 //$config['atf_api'] = API_HOST;
