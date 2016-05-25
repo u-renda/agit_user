@@ -505,7 +505,7 @@ $config['proxy_ips'] = '';
 /* Set Config API Infokost */
 if(is_bool(LOCALHOST) || LOCALHOST == 'localhost')
 {
-    define('API_HOST', 'http://localhost/activities_monitoring_api/');
+    define('API_HOST', 'http://localhost/agit_api/');
     define('UPLOAD_FOLDER', $_SERVER['DOCUMENT_ROOT'].'/upload_agit/user/');
     define('UPLOAD_USER_HOST', 'http://localhost/upload_agit/user/');
 }
