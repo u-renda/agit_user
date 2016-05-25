@@ -1,14 +1,52 @@
-function resubmit_dashboard() {
+//function resubmit_dashboard() {
+//    $("#grid_dashboard").kendoGrid({
+//        dataSource: {
+//            transport: {
+//                read: {
+//                    url: newPathname + "dashboard_get",
+//                    dataType: "json",
+//                    type: "POST",
+//                    data: {
+//                        id_project_group : $('#id_project_group').val()
+//                    }
+//                }
+//            },
+//            schema: {
+//                data: "data"
+//            },
+//            pageSize: 20
+//        },
+//        sortable: false,
+//        columns: [
+//            {
+//                field: "No",
+//                width: 40
+//            }, {
+//                field: "Name"
+//            }, {
+//                field: "Team"
+//            }, {
+//                field: "Responsibilities"
+//            }
+//        ]
+//    });
+//}
+//
+//$('#form_dashboard').submit(function (){
+//    resubmit_dashboard();
+//    $('#grid_dashboard').data('kendoGrid').dataSource.read();
+//    $('#grid_dashboard').data('kendoGrid').refresh();
+//    return false;
+//});
+
+$(function () {
+    // Dashboard
     $("#grid_dashboard").kendoGrid({
         dataSource: {
             transport: {
                 read: {
                     url: newPathname + "dashboard_get",
-                    dataType: "json",
-                    type: "POST",
-                    data: {
-                        id_project_group : $('#id_project_group').val()
-                    }
+                    dataType: "json"
                 }
             },
             schema: {
@@ -30,18 +68,6 @@ function resubmit_dashboard() {
             }
         ]
     });
-}
-
-$('#form_dashboard').submit(function (){
-    resubmit_dashboard();
-    $('#grid_dashboard').data('kendoGrid').dataSource.read();
-    $('#grid_dashboard').data('kendoGrid').refresh();
-    return false;
-});
-
-$(function () {
-    // Dashboard
-    resubmit_dashboard();
     
     // Project Monitoring
     $("#grid_project_monitoring").kendoGrid({
@@ -366,6 +392,192 @@ $(function () {
                 template: "#= data.Action #",
                 sortable: false,
                 width: 130
+            }
+        ]
+    });
+    
+    // User
+    $("#grid_user").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "user_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Name"
+            }, {
+                field: "Company",
+                width: 120
+            }, {
+                field: "Position"
+            }, {
+                field: "Role"
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                width: 100
+            }
+        ]
+    });
+    
+    // Company
+    $("#grid_company").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "company_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Name"
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                width: 100
+            }
+        ]
+    });
+    
+    // Position
+    $("#grid_position").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "position_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Name"
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                width: 100
+            }
+        ]
+    });
+    
+    // Job Analyst
+    $("#grid_job_analyst").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "job_analyst_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Name"
+            }, {
+                field: "Description"
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                width: 100
+            }
+        ]
+    });
+    
+    // Job Role
+    $("#grid_job_role").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "job_role_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Name"
+            }, {
+                field: "Description"
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                width: 100
             }
         ]
     });

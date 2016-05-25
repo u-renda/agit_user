@@ -19,7 +19,7 @@
                 <a href="<?php echo $this->config->item('link_dashboard'); ?>">Dashboard</a>
                 <i class="fa fa-circle"></i>
             </li>
-            <li><span class="active">Project Overview</span></li>
+            <li><span class="active">Project Monitoring</span></li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
         <!-- BEGIN PAGE BASE CONTENT -->

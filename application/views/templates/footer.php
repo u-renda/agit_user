@@ -1,4 +1,4 @@
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -6,6 +6,7 @@
                         <h4 class="modal-title" id="myModalLabel"></h4>
                     </div>
                     <div class="modal-body"></div>
+					<div class="modal-footer"></div>
                 </div>
             </div>
         </div>
@@ -31,9 +32,20 @@
         <script src="<?php echo base_url('assets/js/theme').'/jquery.uniform.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/bootstrap-switch.min.js'; ?>" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
+		<!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="<?php echo base_url('assets/js/theme').'/bootstrap-datepicker.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/jquery.validate.min.js'; ?>" type="text/javascript"></script>
+        <!--<script src="<?php echo base_url('assets/js/theme').'/additional-methods.min.js'; ?>" type="text/javascript"></script>-->
+        <script src="<?php echo base_url('assets/js/theme').'/jquery.bootstrap.wizard.min.js'; ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url('assets/js/theme').'/jquery-ui.min.js'; ?>" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="<?php echo base_url('assets/js/theme').'/app.min.js'; ?>" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
+		<!-- BEGIN PAGE LEVEL PLUGINS -->
+		<!--<script src="<?php echo base_url('assets/js/theme').'/form-wizard.min.js'; ?>" type="text/javascript"></script>-->
+		<!--<script src="<?php echo base_url('assets/js/theme').'/ui-modals.min.js'; ?>" type="text/javascript"></script>-->
+		<!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="<?php echo base_url('assets/js/theme').'/layout.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/demo.min.js'; ?>" type="text/javascript"></script>
@@ -45,5 +57,6 @@
 		<script src="<?php echo base_url('assets/js').'/app.js'; ?>" type="text/javascript"></script>
 		<script src="<?php echo base_url('assets/js').'/app-table.js'; ?>" type="text/javascript"></script>
 		<script src="<?php echo base_url('assets/js').'/app-table-btn.js'; ?>" type="text/javascript"></script>
+		<script src="<?php echo base_url('assets/js').'/app-validate.js'; ?>" type="text/javascript"></script>
 	</body>
 </html>

@@ -18,7 +18,7 @@
 <body>
     <section class="body-sign">
         <div class="center-sign">
-            <a href="#" class="logo pull-left">
+            <a class="logo pull-left">
                 <img src="<?php echo base_url('assets/images').'/logo.png'; ?>" height="54" alt="<?php echo $this->config->item('title'); ?>">
             </a>
             <div class="panel panel-sign">

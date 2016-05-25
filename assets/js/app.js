@@ -54,9 +54,15 @@ var newPathname = winOrigin + "/" + winPath[1] + "/";
 	if (document.getElementById('page_admin_edit') != null) {
 		$('li#grand-admin').addClass('nav-active');
 	}
+	
+	// Datepicker
+	$('.datepicker').datepicker({
+		format: 'dd M yyyy'
+	});
 
 }).apply(this, [jQuery]);
 
+// Create session for project
 function session_id_project(id_project) {
 	var dataString = 'id_project='+ id_project;
 	console.log(id_project);

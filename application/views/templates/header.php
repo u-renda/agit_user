@@ -19,6 +19,9 @@
         <link href="<?php echo base_url('assets/css/theme').'/uniform.default.css'; ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/theme').'/bootstrap-switch.min.css'; ?>" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="<?php echo base_url('assets/css/theme').'/bootstrap-datepicker3.min.css'; ?>" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="<?php echo base_url('assets/css/theme').'/components.css'; ?>" rel="stylesheet" id="style_components" type="text/css" />
         <link href="<?php echo base_url('assets/css/theme').'/plugins.min.css'; ?>" rel="stylesheet" type="text/css" />

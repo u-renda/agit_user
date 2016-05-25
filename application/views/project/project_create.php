@@ -25,7 +25,7 @@
         <!-- BEGIN PAGE BASE CONTENT -->
         <div class="row" id="page_project_create">
             <div class="col-md-12 col-sm-12">
-                <div class="portlet light bordered">
+                <div class="portlet light bordered" id="form_wizard_1">
                     <div class="portlet-body form">
                         <form action="<?php echo $this->config->item('link_project_create'); ?>" method="post" class="form-horizontal" id="form_project_create" novalidate="novalidate">
                             <div class="form-wizard">
@@ -64,7 +64,7 @@
                                             </a>
                                         </li>
                                     </ul>
-                                    <div id="bar" class="progress progress-stripped" role="progressbar">
+                                    <div id="bar" class="progress progress-striped" role="progressbar">
                                         <div class="progress-bar progress-bar-success"> </div>
                                     </div>
                                     <div class="tab-content">
@@ -76,11 +76,21 @@
                                         </div>
                                         <div class="tab-pane active" id="tab1">
                                             <div class="form-group form-md-line-input">
-                                                <label class="control-label col-md-3">Project Name
-                                                    <span class="required"> * </span>
-                                                </label>
+                                                <label class="col-md-3 control-label">Company<span class="required"> * </span></label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="name" />
+                                                    <select class="form-control" name="id_company">
+                                                        <option value="">-- Select --</option>
+                                                        <?php foreach ($company_lists as $row) { ?>
+                                                        <option value="<?php echo $row->id_company; ?>"><?php echo ucwords($row->name); ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="control-label col-md-3">Project Name<span class="required"> * </span></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" name="name" id="name" />
                                                     <div class="form-control-focus"></div>
                                                 </div>
                                             </div>
@@ -92,7 +102,7 @@
                                                     <div class="md-radio-inline">
                                                         <?php foreach ($project_type_lists as $row) { ?>
                                                         <div class="md-radio">
-                                                            <input type="radio" id="<?php echo $row->id_project_type; ?>" name="id_project_type" value="<?php echo $row->id_project_type; ?>" class="md-radiobtn">
+                                                            <input type="radio" id="<?php echo $row->id_project_type; ?>" name="id_project_type" value="<?php echo $row->id_project_type; ?>" class="md-radiobtn id_project_type">
                                                             <label for="<?php echo $row->id_project_type; ?>">
                                                                 <span></span>
                                                                 <span class="check"></span>
@@ -100,6 +110,31 @@
                                                             </label>
                                                         </div>
                                                         <?php } ?>
+                                                    </div>
+                                                    <input type="text" class="form-control" name="project_type_others_name" id="project_type_others_name" placeholder="Please insert new project type name" />
+                                                    <div class="form-control-focus"></div>
+                                                    <div class="font-red-thunderbird" id="errorbox_id_project_type"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="control-label col-md-3">Start Date
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-3">
+                                                    <div class="input-icon">
+                                                        <input type="text" class="form-control datepicker" name="start_date" />
+                                                        <div class="form-control-focus"></div>
+                                                        <i class="icon-calendar"></i>
+                                                    </div>
+                                                </div>
+                                                <label class="control-label col-md-3">Finished Date
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-3">
+                                                    <div class="input-icon">
+                                                        <input type="text" class="form-control datepicker" name="finished_date" />
+                                                        <div class="form-control-focus"></div>
+                                                        <i class="icon-calendar"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,7 +155,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-actions"></div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <a href="javascript:;" class="btn default button-previous">
+                                                <i class="fa fa-angle-left"></i> Back </a>
+                                            <a href="javascript:;" class="btn btn-outline green button-next"> Continue
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                            <a href="javascript:;" class="btn green button-submit"> Submit
+                                                <i class="fa fa-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

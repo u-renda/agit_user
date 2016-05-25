@@ -28,36 +28,25 @@
                     <div class="portlet-body form">
                         <form role="form" class="form-horizontal" id="form_dashboard">
                             <div class="form-body paddingtb0">
-                                <div class="form-group form-md-line-input">
+                                <div class="form-group form-md-line-input marginbottom0">
                                     <label class="col-md-2 control-label">Client:</label>
                                     <div class="col-md-10">
                                         <div class="form-control form-control-static"><?php echo $user->company->name; ?></div>
                                         <div class="form-control-focus"> </div>
                                     </div>
                                 </div>
-                                <div class="form-group form-md-line-input">
+                                <div class="form-group form-md-line-input marginbottom0">
                                     <label class="col-md-2 control-label">PO Name:</label>
                                     <div class="col-md-10">
-                                        <div class="form-control form-control-static"><?php echo ucwords($user->po_name); ?></div>
+                                        <div class="form-control form-control-static"><?php echo ucwords($user->po_name->name); ?></div>
                                         <div class="form-control-focus"> </div>
                                     </div>
                                 </div>
-                                <div class="form-group form-md-line-input">
+                                <div class="form-group form-md-line-input marginbottom0">
                                     <label class="col-md-2 control-label">Project Group:</label>
                                     <div class="col-md-10">
-                                        <select class="form-control" name="id_project_group" id="id_project_group">
-                                            <?php foreach ($project as $key => $val) { ?>
-                                            <option value="<?php echo $val['project_group']->id_project_group; ?>"><?php echo $val['project_group']->name; ?></option>
-                                            <?php } ?>
-                                        </select>
+                                        <div class="form-control form-control-static"><?php echo ucwords($user->user_project_group->name); ?></div>
                                         <div class="form-control-focus"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-actions paddingbottom0">
-                                <div class="row">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <button type="button" class="btn blue btn_dashboard" name="submit" value="submit">Submit</button>
                                     </div>
                                 </div>
                             </div>

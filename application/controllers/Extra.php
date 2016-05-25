@@ -7,6 +7,70 @@ class Extra extends CI_Controller {
 		parent::__construct();
 		$this->load->model('');
 	}
+	
+	function check_company_name()
+	{
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_company_name($name);
+	
+		if ($get == TRUE && $selfname != $name)
+		{
+			echo 'false';
+		}
+		else
+		{
+            echo 'true';
+        }
+	}
+	
+	function check_job_analyst_name()
+	{
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_job_analyst_name($name);
+	
+		if ($get == TRUE && $selfname != $name)
+		{
+			echo 'false';
+		}
+		else
+		{
+            echo 'true';
+        }
+	}
+	
+	function check_job_role_name()
+	{
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_job_role_name($name);
+	
+		if ($get == TRUE && $selfname != $name)
+		{
+			echo 'false';
+		}
+		else
+		{
+            echo 'true';
+        }
+	}
+	
+	function check_position_name()
+	{
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_position_name($name);
+	
+		if ($get == TRUE && $selfname != $name)
+		{
+			echo 'false';
+		}
+		else
+		{
+            echo 'true';
+        }
+	}
 
     function set_session_id_project()
 	{

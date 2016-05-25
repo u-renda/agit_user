@@ -10,6 +10,53 @@ class Complaint extends CI_Controller {
 		$this->load->model('user_complaint_model');
 		$this->load->model('user_model');
 	}
+
+    function complaint_create()
+	{
+		if ($this->input->post('submit') == TRUE)
+		{
+			$this->form_validation->set_rules('id_user', 'id_user', 'required');
+			$this->form_validation->set_rules('id_complained', 'id_complained', 'required');
+			$this->form_validation->set_rules('name', 'name', 'required');
+			$this->form_validation->set_rules('type', 'type', 'required');
+			$this->form_validation->set_rules('description', 'description', 'required');
+			
+			if ($this->form_validation->run() == TRUE)
+			{
+				$param = array();
+				$param['name'] = $this->input->post('name');
+				$param['description'] = $this->input->post('description');
+				$query = $this->job_analyst_model->create($param);
+				
+				if ($query > 0)
+				{
+					// Logging
+					logging_create('Create job analyst');
+					
+					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst_lists'));
+				}
+				else
+				{
+					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+				}
+				
+				echo json_encode($response);
+				exit();
+			}
+		}
+		
+		$data = array();
+		$query2 = $this->user_model->lists(array('order' => 'name', 'sort' => 'asc'));
+		
+		if ($query2->code == 200)
+		{
+			$data['user_lists'] = $query2->result;
+		}
+		
+		$data['code_user_complaint_type'] = $this->config->item('code_user_complaint_type');
+		$data['frame_content'] = 'complaint/complaint_create';
+		$this->load->view('templates/frame', $data);
+	}
 	
 	function complaint_get()
 	{

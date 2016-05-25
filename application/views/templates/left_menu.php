@@ -111,27 +111,27 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="form_controls.html" class="nav-link ">
-                            <span class="title">Users</span>
+                        <a href="<?php echo $this->config->item('link_user'); ?>" class="nav-link ">
+                            <span class="title">User</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="form_controls_md.html" class="nav-link ">
+                        <a href="<?php echo $this->config->item('link_job_analyst'); ?>" class="nav-link ">
                             <span class="title">Job Analyst</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="form_validation.html" class="nav-link ">
+                        <a href="<?php echo $this->config->item('link_job_role'); ?>" class="nav-link ">
                             <span class="title">Job Role</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="form_validation_states_md.html" class="nav-link ">
+                        <a href="<?php echo $this->config->item('link_company'); ?>" class="nav-link ">
                             <span class="title">Company</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="form_validation_md.html" class="nav-link ">
+                        <a href="<?php echo $this->config->item('link_position'); ?>" class="nav-link ">
                             <span class="title">Position</span>
                         </a>
                     </li>

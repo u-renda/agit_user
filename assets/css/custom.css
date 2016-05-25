@@ -14,6 +14,9 @@
 .margintop15 {
     margin-top: 15px;
 }
+.marginbottom0 {
+    margin-bottom: 0 !important;
+}
 .marginbottom5 {
     margin-bottom: 5px;
 }
@@ -38,6 +41,12 @@
 }
 .font14 {
     font-size: 14px !important;
+}
+.opacity1 {
+    opacity: 1 !important;
+}
+.full-width {
+    width: 100%;
 }
 
 /* KENDO GRID */

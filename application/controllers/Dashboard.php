@@ -17,47 +17,38 @@ class Dashboard extends CI_Controller {
 	
 	function dashboard_get()
 	{
-		$id_project_group = $this->input->post('id_project_group');
+		$id_user = $this->session->userdata('id_user');
+		$get_project_user = $this->project_user_model->lists(array('id_user' => $id_user));
+		$jsonData = array('data' => array());
 		
-		$get_project = $this->project_model->lists(array('id_project_group' => $id_project_group));
-		
-		if ($get_project->code == 200)
+		if ($get_project_user->code == 200)
 		{
-			$jsonData = array('data' => array());
 			$i = 1;
-					
-			foreach ($get_project->result as $row)
+			
+			foreach ($get_project_user->result as $row)
 			{
-				$get_project_user = $this->project_user_model->lists(array('id_project' => $row->id_project));
+				$get_user = $this->user_model->info(array('id_user' => $row->id_user));
+				$get_job_role = $this->job_role_model->info(array('id_job_role' => $row->id_job_role));
 				
-				if ($get_project_user->code == 200)
+				if ($get_user->code == 200 && $get_job_role->code == 200)
 				{
-					foreach ($get_project_user->result as $row)
-					{
-						$get_user = $this->user_model->info(array('id_user' => $row->id_user));
-						$get_job_role = $this->job_role_model->info(array('id_job_role' => $row->id_job_role));
-						
-						if ($get_user->code == 200 && $get_job_role->code == 200)
-						{
-							$user = $get_user->result;
-							$job_role = $get_job_role->result;
-							
-							$entry = array(
-								'No' => $i,
-								'Name' => ucwords($user->name),
-								'Team' => ucwords($user->company->name),
-								'Responsibilities' => ucwords($job_role->name)
-							);
-							
-							$jsonData['data'][] = $entry;
-							$i++;
-						}
-					}
+					$user = $get_user->result;
+					$job_role = $get_job_role->result;
+					
+					$entry = array(
+						'No' => $i,
+						'Name' => ucwords($user->name),
+						'Team' => ucwords($user->company->name),
+						'Responsibilities' => ucwords($job_role->name)
+					);
+					
+					$jsonData['data'][] = $entry;
+					$i++;
 				}
 			}
-			
-			echo json_encode($jsonData);
 		}
+		
+		echo json_encode($jsonData);
 	}
 	
 	function index()
@@ -65,32 +56,13 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$id_user = $this->session->userdata('id_user');
 		$get_user = $this->user_model->info(array('id_user' => $id_user));
-		$project = array();
 		
 		if ($get_user->code == 200)
 		{
 			$data['user'] = $get_user->result;
-			
-			$get_project_user = $this->project_user_model->lists(array('id_user' => $id_user));
-			
-			if ($get_project_user->code == 200)
-			{
-				foreach ($get_project_user->result as $row)
-				{
-					$get_project = $this->project_model->info(array('id_project' => $row->id_project));
-					
-					if ($get_project->code == 200)
-					{
-						$project[]['project_group'] = $get_project->result->project_group;
-					}
-				}
-			}
+			$data['frame_content'] = 'dashboard/dashboard';
+			$this->load->view('templates/frame', $data);
 		}
-		
-		$data['project'] = array_map("unserialize", array_unique(array_map("serialize", $project)));
-		$data['id_project_group'] = $this->input->post('id_project_group');
-		$data['frame_content'] = 'dashboard/dashboard';
-		$this->load->view('templates/frame', $data);
 	}
 	
 	function project_monitoring()

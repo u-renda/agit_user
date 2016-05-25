@@ -67,6 +67,7 @@ $route['resource_monitoring_get'] = 'dashboard/resource_monitoring_get';
 
 // COMPLAINT
 $route['complaint'] = 'complaint/index';
+$route['complaint_create'] = 'complaint/complaint_create';
 $route['complaint_get'] = 'complaint/complaint_get';
 
 // PROJECT
@@ -80,4 +81,28 @@ $route['project_timeline'] = 'project/project_timeline';
 $route['project_timeline_get'] = 'project/project_timeline_get';
 
 // EXTRA
+$route['check_company_name'] = 'extra/check_company_name';
+$route['check_job_analyst_name'] = 'extra/check_job_analyst_name';
+$route['check_job_role_name'] = 'extra/check_job_role_name';
+$route['check_position_name'] = 'extra/check_position_name';
 $route['set_session_id_project'] = 'extra/set_session_id_project';
+
+// USER
+$route['user_create'] = 'user/user_create';
+$route['user_get'] = 'user/user_get';
+
+// COMPANY
+$route['company_create'] = 'company/company_create';
+$route['company_get'] = 'company/company_get';
+
+// POSITION
+$route['position_create'] = 'position/position_create';
+$route['position_get'] = 'position/position_get';
+
+// JOB ANALYST
+$route['job_analyst_create'] = 'job_analyst/job_analyst_create';
+$route['job_analyst_get'] = 'job_analyst/job_analyst_get';
+
+// JOB ROLE
+$route['job_role_create'] = 'job_role/job_role_create';
+$route['job_role_get'] = 'job_role/job_role_get';

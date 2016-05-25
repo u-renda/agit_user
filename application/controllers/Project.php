@@ -7,6 +7,7 @@ class Project extends CI_Controller {
 		parent::__construct();
 		if ($this->session->userdata('is_login') == FALSE) { redirect($this->config->item('link_login')); }
 		
+		$this->load->model('company_model');
 		$this->load->model('project_issue_model');
 		$this->load->model('project_model');
 		$this->load->model('project_task_model');
@@ -27,6 +28,7 @@ class Project extends CI_Controller {
 	{
 		if ($this->input->post('submit') == TRUE)
 		{
+			print_r();die($this->input->post());die();
 			$this->form_validation->set_rules('id_company', 'Company', 'required');
 			$this->form_validation->set_rules('id_project_type', 'Project Type', 'required');
 			$this->form_validation->set_rules('name', 'Name', 'required');
@@ -79,19 +81,20 @@ class Project extends CI_Controller {
 		
 		$data = array();
 		$query2 = $this->project_type_model->lists(array());
-		//$query3 = $this->company_model->lists(array());
+		$query3 = $this->company_model->lists(array());
+		print_r($query3);die();
 		//$query4 = $this->job_analyst_model->lists(array());
 		//
 		if ($query2->code == 200)
 		{
 			$data['project_type_lists'] = $query2->result;
 		}
-		//
-		//if ($query3->num_rows() > 0)
-		//{
-		//	$data['company_lists'] = $query3->result();
-		//}
-		//
+		
+		if ($query3->code == 200)
+		{
+			$data['company_lists'] = $query3->result;
+		}
+		
 		//if ($query4->num_rows() > 0)
 		//{
 		//	$data['job_analyst_lists'] = $query4->result();

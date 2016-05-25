@@ -506,6 +506,8 @@ $config['proxy_ips'] = '';
 if(is_bool(LOCALHOST) || LOCALHOST == 'localhost')
 {
     define('API_HOST', 'http://localhost/activities_monitoring_api/');
+    define('UPLOAD_FOLDER', $_SERVER['DOCUMENT_ROOT'].'/upload_agit/user/');
+    define('UPLOAD_USER_HOST', 'http://localhost/upload_agit/user/');
 }
 else
 {
@@ -518,16 +520,27 @@ $config['cookie_key'] = '67eOO9w';
 
 $config['title'] = 'Project Management for User';
 
+$config['link_company'] = $config['base_url'].'company';
+$config['link_company_create'] = $config['base_url'].'company_create';
 $config['link_complaint'] = $config['base_url'].'complaint';
+$config['link_complaint_create'] = $config['base_url'].'complaint_create';
 $config['link_dashboard'] = $config['base_url'].'dashboard';
+$config['link_job_analyst'] = $config['base_url'].'job_analyst';
+$config['link_job_analyst_create'] = $config['base_url'].'job_analyst_create';
+$config['link_job_role'] = $config['base_url'].'job_role';
+$config['link_job_role_create'] = $config['base_url'].'job_role_create';
 $config['link_login'] = $config['base_url'].'login';
 $config['link_logout'] = $config['base_url'].'logout';
+$config['link_position'] = $config['base_url'].'position';
+$config['link_position_create'] = $config['base_url'].'position_create';
 $config['link_project'] = $config['base_url'].'project';
 $config['link_project_create'] = $config['base_url'].'project_create';
 $config['link_project_monitoring'] = $config['base_url'].'project_monitoring';
 $config['link_project_overview'] = $config['base_url'].'project_overview';
 $config['link_project_timeline'] = $config['base_url'].'project_timeline';
 $config['link_resource_monitoring'] = $config['base_url'].'resource_monitoring';
+$config['link_user'] = $config['base_url'].'user';
+$config['link_user_create'] = $config['base_url'].'user_create';
 
 // CODE
 $config['code_active_inactive'] = array(

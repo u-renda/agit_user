@@ -6,7 +6,7 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>User Complaint
+                <h1>Job Analyst
                     <small></small>
                 </h1>
             </div>
@@ -16,19 +16,21 @@
         <!-- BEGIN PAGE BREADCRUMB -->
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="<?php echo $this->config->item('link_complaint'); ?>">Complaints</a>
+                <a href="#">Administrator</a>
+                <i class="fa fa-circle"></i>
             </li>
+            <li><span class="active">Job Analyst</span></li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
         <!-- BEGIN PAGE BASE CONTENT -->
-        <div class="row" id="page_complaint">
+        <div class="row" id="page_job_analyst">
             <div class="col-md-12 col-sm-12">
                 <div class="portlet light bordered">
                     <div class="portlet-body">
-                        <div id="grid_complaint"></div>
+                        <div id="grid_job_analyst"></div>
                         <div class="row margintop15">
                             <div class="col-sm-12">
-                                <a type="button" class="btn btn-primary" href="<?php echo $this->config->item('link_complaint_create'); ?>">Add Complaints</a>
+                                <a type="button" class="btn btn-primary" href="<?php echo $this->config->item('link_job_analyst_create'); ?>">Add Job Analyst</a>
                             </div>
                         </div>
                     </div>
@@ -40,5 +42,3 @@
     <!-- END CONTENT BODY -->
 </div>
 <!-- END CONTENT -->
-        
-        
