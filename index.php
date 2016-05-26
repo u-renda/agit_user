@@ -55,7 +55,7 @@
  */
 	define('LOCALHOST', $_SERVER['HTTP_HOST']);
 	
-	if(is_bool(LOCALHOST) || LOCALHOST == 'localhost')
+	if(is_bool(LOCALHOST) || LOCALHOST == 'localhost' || LOCALHOST == 'localhost:8081')
 	{
 		// localhost
 		define('ENVIRONMENT', 'development');

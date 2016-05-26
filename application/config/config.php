@@ -509,6 +509,12 @@ if(is_bool(LOCALHOST) || LOCALHOST == 'localhost')
     define('UPLOAD_FOLDER', $_SERVER['DOCUMENT_ROOT'].'/upload_agit/user/');
     define('UPLOAD_USER_HOST', 'http://localhost/upload_agit/user/');
 }
+elseif(is_bool(LOCALHOST) || LOCALHOST == 'localhost:8081')
+{
+    define('API_HOST', 'http://localhost:8081/agit_api/');
+    define('UPLOAD_FOLDER', $_SERVER['DOCUMENT_ROOT'].'/upload_agit/user/');
+    define('UPLOAD_USER_HOST', 'http://localhost:8081/upload_agit/user/');
+}
 else
 {
     //define('API_HOST', 'http://localhost/activities_monitoring_api/');
