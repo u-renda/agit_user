@@ -509,17 +509,9 @@ if(is_bool(LOCALHOST) || LOCALHOST == 'localhost')
     define('UPLOAD_FOLDER', $_SERVER['DOCUMENT_ROOT'].'/upload_agit/user/');
     define('UPLOAD_USER_HOST', 'http://localhost/upload_agit/user/');
 }
-elseif(is_bool(LOCALHOST) || LOCALHOST == 'localhost:8081')
-{
-    define('API_HOST', 'http://localhost:8081/agit_api/');
-    define('UPLOAD_FOLDER', $_SERVER['DOCUMENT_ROOT'].'/upload_agit/user/');
-    define('UPLOAD_USER_HOST', 'http://localhost:8081/upload_agit/user/');
-}
 else
 {
-    //define('API_HOST', 'http://localhost/agit_api/');
-    //define('UPLOAD_FOLDER', $_SERVER['DOCUMENT_ROOT'].'/upload_agit/user/');
-    //define('UPLOAD_USER_HOST', 'http://localhost/upload_agit/user/');
+    //define('API_HOST', 'http://localhost/activities_monitoring_api/');
 }
 
 //$config['atf_api'] = API_HOST;
@@ -549,6 +541,7 @@ $config['link_project_timeline'] = $config['base_url'].'project_timeline';
 $config['link_resource_monitoring'] = $config['base_url'].'resource_monitoring';
 $config['link_user'] = $config['base_url'].'user';
 $config['link_user_create'] = $config['base_url'].'user_create';
+$config['link_user_edit'] = $config['base_url'].'user_edit';
 
 // CODE
 $config['code_active_inactive'] = array(
