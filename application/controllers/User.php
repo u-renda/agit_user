@@ -163,27 +163,12 @@ class User extends CI_Controller {
 	
 	function user_edit()
 	{
-		if (isset($_GET["id"]))
-		{	
-			$id['id_user']=$_GET["id"];
-			$query = $this->user_model->info($id);
-			if($query->code==200)
-			{
-				$data['user_detail'] = $query;
-				$data['company_lists'] = get_company_lists(array('order' => 'name', 'sort' => 'asc'));
-				$data['position_lists'] = get_position_lists(array('order' => 'name', 'sort' => 'asc'));
-				$data['po_name_lists'] = get_po_name_lists(array('order' => 'name', 'sort' => 'asc'));
-				$data['user_project_group_lists'] = get_user_project_group_lists(array('order' => 'name', 'sort' => 'asc'));
-				$data['code_user_role'] = $this->config->item('code_user_role');
-				$data['frame_content'] = 'user/user_edit';
-				$this->load->view('templates/frame', $data);
-			}
-			else
-			{
-				redirect(user);
-			}
-		}
-		else
+		$data = array();
+		$data['id'] = $this->input->get("id");
+		
+		$query = $this->user_model->info(array('id_user' => $data['id']));
+		
+		if ($query->code == 200)
 		{
 			if ($this->input->post('submit') == TRUE)
 			{
@@ -192,18 +177,12 @@ class User extends CI_Controller {
 				$this->form_validation->set_rules('id_company', 'Company', 'required');
 				$this->form_validation->set_rules('id_po_name', 'PO Name', 'required');
 				$this->form_validation->set_rules('id_user_project_group', 'Project group', 'required');
-				if(($this->input->post('email')==null) or($this->input->post('email')==$this->input->post('email_lama')))
-				{
-					$email= $this->input->post('email_lama');
-				}
-				if else($this->input->post('email'))
 				$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email');
 				$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
-				$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_user_name');
 				$this->form_validation->set_rules('role', 'Role', 'required');
 				$this->form_validation->set_rules('photo', 'photo', 'callback_check_photo');
-				//echo "masuk";die();
+				
 				if ($this->form_validation->run() == TRUE)
 				{
 					if ((isset($_FILES['photo']))&&($_FILES['photo']!=null))
@@ -221,13 +200,17 @@ class User extends CI_Controller {
 					}
 					
 					$param = array();
+					if ( ! empty($this->input->post('password')))
+					{
+						$param['password'] = $this->input->post('password');
+					}
+					
 					$param['id_position'] = $this->input->post('id_position');
 					$param['id_company'] = $this->input->post('id_company');
 					$param['id_po_name'] = $this->input->post('id_po_name');
 					$param['id_user_project_group'] = $this->input->post('id_user_project_group');
 					$param['email'] = $this->input->post('email');
 					$param['username'] = $this->input->post('username');
-					$param['password'] = $this->input->post('password');
 					$param['name'] = $this->input->post('name');
 					$param['role'] = $this->input->post('role');
 					$param['nik'] = $this->input->post('nik');
@@ -245,15 +228,24 @@ class User extends CI_Controller {
 					
 					echo json_encode($response);
 					exit();
-					redirect(user);
 				}
 			}
-			else
-			{
-				redirect(user);
-			}
+			
+			$data['user_detail'] = $query;
+			$data['company_lists'] = get_company_lists(array('order' => 'name', 'sort' => 'asc'));
+			$data['position_lists'] = get_position_lists(array('order' => 'name', 'sort' => 'asc'));
+			$data['po_name_lists'] = get_po_name_lists(array('order' => 'name', 'sort' => 'asc'));
+			$data['user_project_group_lists'] = get_user_project_group_lists(array('order' => 'name', 'sort' => 'asc'));
+			$data['code_user_role'] = $this->config->item('code_user_role');
+			$data['frame_content'] = 'user/user_edit';
+			$this->load->view('templates/frame', $data);
+		}
+		else
+		{
+			redirect($this->config->item('link_user'));
 		}
 	}
+	
 	function user_get()
 	{
 		$page = $this->input->post('page') ? $this->input->post('page') : 1;
@@ -283,7 +275,7 @@ class User extends CI_Controller {
 				$get_position = $this->position_model->info(array('id_position' => $row->id_position));
 				
 				$action = '<a title="Detail" id="'.$row->id_user.'" class="view '.$row->id_user.'-view" href="#"><i class="fa fa-folder-open font-larger font-blue"></i></a>&nbsp;
-							<a title="Edit" href="user/user_edit?id='.$row->id_user.'"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
+							<a title="Edit" href="'.$this->config->item('link_user_edit').'?id='.$row->id_user.'"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
 							<a title="Delete" id="'.$row->id_user.'" class="delete '.$row->id_user.'-delete" href="#"><i class="fa fa-times font-larger font-red-thunderbird"></i></a>';
 				
 				if ($get_company->code == 200 || $get_position->code == 200)
