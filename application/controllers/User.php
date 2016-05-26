@@ -178,31 +178,35 @@ class User extends CI_Controller {
 				$data['frame_content'] = 'user/user_edit';
 				$this->load->view('templates/frame', $data);
 			}
-			else{
+			else
+			{
 				redirect(user);
 			}
-			
 		}
 		else
 		{
 			if ($this->input->post('submit') == TRUE)
 			{
-				echo "masuk";die();
 				$this->form_validation->set_error_delimiters('<div class="font-red-flamingo">', '</div>');
 				$this->form_validation->set_rules('id_position', 'Position', 'required');
 				$this->form_validation->set_rules('id_company', 'Company', 'required');
 				$this->form_validation->set_rules('id_po_name', 'PO Name', 'required');
 				$this->form_validation->set_rules('id_user_project_group', 'Project group', 'required');
+				if(($this->input->post('email')==null) or($this->input->post('email')==$this->input->post('email_lama')))
+				{
+					$email= $this->input->post('email_lama');
+				}
+				if else($this->input->post('email'))
 				$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email');
 				$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
 				$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_user_name');
 				$this->form_validation->set_rules('role', 'Role', 'required');
 				$this->form_validation->set_rules('photo', 'photo', 'callback_check_photo');
-				
+				//echo "masuk";die();
 				if ($this->form_validation->run() == TRUE)
 				{
-					if (isset($_FILES['photo']))
+					if ((isset($_FILES['photo']))&&($_FILES['photo']!=null))
 					{
 						if ($_FILES["photo"]["error"] == 0)
 						{
@@ -210,6 +214,10 @@ class User extends CI_Controller {
 							$imageFileType = strtolower(pathinfo($_FILES["photo"]["name"],PATHINFO_EXTENSION));
 							$photo = UPLOAD_USER_HOST . $name . '.' . $imageFileType;
 						}
+					}
+					else
+					{
+						$photo=$this->input->post('photo_lama');
 					}
 					
 					$param = array();
