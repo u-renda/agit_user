@@ -176,8 +176,8 @@ class User extends CI_Controller {
 				$this->form_validation->set_rules('id_company', 'Company', 'required');
 				$this->form_validation->set_rules('id_po_name', 'PO Name', 'required');
 				$this->form_validation->set_rules('id_user_project_group', 'Project group', 'required');
-				$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email');
-				$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
+				//$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email');
+				//$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_user_name');
 				$this->form_validation->set_rules('role', 'Role', 'required');
 				$this->form_validation->set_rules('photo', 'photo', 'callback_check_photo');
@@ -192,10 +192,6 @@ class User extends CI_Controller {
 							$imageFileType = strtolower(pathinfo($_FILES["photo"]["name"],PATHINFO_EXTENSION));
 							$photo = UPLOAD_USER_HOST . $name . '.' . $imageFileType;
 						}
-					}
-					else
-					{
-						$photo=$this->input->post('photo_lama');
 					}
 					$param = array();
 					if ( ! empty($this->input->post('password')))
@@ -213,7 +209,7 @@ class User extends CI_Controller {
 					$param['name'] = $this->input->post('name');
 					$param['role'] = $this->input->post('role');
 					$param['nik'] = $this->input->post('nik');
-					$param['photo'] = $photo;
+					//$param['photo'] = $photo;
 					$query = $this->user_model->update($param);
 					
 					if ($query->code == 200)
