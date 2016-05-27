@@ -39,11 +39,15 @@
                                         <div class="form-group form-md-line-input">
                                             <label class="col-md-3 control-label">Company<span class="required"> * </span></label>
                                             <div class="col-md-9">
-                                                <?php echo form_error('id_company'); ?>
+                                                <?php 
+													echo form_error('id_company'); 
+													echo "<input type='hidden' name='id_user' value='".$user_detail->result->id_user."'>";
+												?>
                                                 <select class="form-control" name="id_company">
                                                     <option value="">-- Select --</option>
                                                     <?php 
-													foreach ($company_lists as $row) { 
+													foreach ($company_lists as $row) 
+													{ 
 														if((isset($user_detail->result->company->id_company))&&($user_detail->result->company->id_company==$row->id_company))
 														{ ?>
 															<option selected value="<?php echo $row->id_company; ?>" <?php echo set_select('id_company', $row->id_company); ?>><?php echo ucwords($row->name); ?></option><?php
@@ -179,8 +183,7 @@
                                                 <?php 
 												if(isset($user_detail->result->photo))
 												{
-													echo "<input type='hidden' value='".$user_detail->result->photo."' name='photo_lama' />";
-													echo "<img alt='Dwi Yustiana' style='widht:20px;height:20px;' class='img-circle' src='http://localhost:8081/upload_agit/user/23083ea1668206868acab41803ff6e95.jpg'>";
+													echo "<img alt='Dwi Yustiana' style='widht:20px;height:20px;' class='img-circle' src='".$this->config->item('link_user_upload')."/user/23083ea1668206868acab41803ff6e95.jpg'>";
 												} 
 												?><input type="file" class="form-control" name="photo" />
                                             </div>

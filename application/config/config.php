@@ -548,6 +548,7 @@ $config['link_resource_monitoring'] = $config['base_url'].'resource_monitoring';
 $config['link_user'] = $config['base_url'].'user';
 $config['link_user_create'] = $config['base_url'].'user_create';
 $config['link_user_edit'] = $config['base_url'].'user_edit';
+$config['link_user_upload'] = $config['base_url'].'upload_agit';
 
 // CODE
 $config['code_active_inactive'] = array(

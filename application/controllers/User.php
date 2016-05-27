@@ -1,5 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
 class User extends CI_Controller {
 	
 	function __construct()
@@ -11,7 +10,6 @@ class User extends CI_Controller {
 		$this->load->model('position_model');
 		$this->load->model('user_model');
 	}
-
     function check_photo()
     {
         if (isset($_FILES['photo']))
@@ -21,16 +19,13 @@ class User extends CI_Controller {
                 $name = md5(basename($_FILES["photo"]["name"]) . date('Y-m-d H:i:s'));
                 $target_dir = UPLOAD_USER_HOST;
                 $imageFileType = strtolower(pathinfo($_FILES["photo"]["name"],PATHINFO_EXTENSION));
-
                 $param2 = array();
                 $param2['target_file'] = UPLOAD_FOLDER . $name . '.' . $imageFileType;
                 $param2['imageFileType'] = $imageFileType;
                 $param2['tmp_name'] = $_FILES["photo"]["tmp_name"];
                 $param2['tmp_file'] = $target_dir . $name . '.' . $imageFileType;
                 $param2['size'] = $_FILES["photo"]["size"];
-
                 $check_image = check_image($param2);
-
                 if ($check_image == 'true')
                 {
                     return TRUE;
@@ -88,14 +83,12 @@ class User extends CI_Controller {
             return TRUE;
         }
 	}
-
     function index()
 	{
 		$data = array();
 		$data['frame_content'] = 'user/user';
 		$this->load->view('templates/frame', $data);
 	}
-
     function user_create()
 	{
 		if ($this->input->post('submit') == TRUE)
@@ -164,10 +157,16 @@ class User extends CI_Controller {
 	function user_edit()
 	{
 		$data = array();
-		$data['id'] = $this->input->get("id");
+		if (!empty($this->input->post('id_user')))
+		{
+			$data['id'] = $this->input->post("id_user");
+		}
+		else
+		{
+			$data['id'] = $this->input->get("id");
+		}
 		
 		$query = $this->user_model->info(array('id_user' => $data['id']));
-		
 		if ($query->code == 200)
 		{
 			if ($this->input->post('submit') == TRUE)
@@ -198,13 +197,13 @@ class User extends CI_Controller {
 					{
 						$photo=$this->input->post('photo_lama');
 					}
-					
 					$param = array();
 					if ( ! empty($this->input->post('password')))
 					{
 						$param['password'] = $this->input->post('password');
 					}
 					
+					$param['id_user'] = $this->input->post('id_user');
 					$param['id_position'] = $this->input->post('id_position');
 					$param['id_company'] = $this->input->post('id_company');
 					$param['id_po_name'] = $this->input->post('id_po_name');
@@ -215,7 +214,7 @@ class User extends CI_Controller {
 					$param['role'] = $this->input->post('role');
 					$param['nik'] = $this->input->post('nik');
 					$param['photo'] = $photo;
-					$query = $this->user_model->create($param);
+					$query = $this->user_model->update($param);
 					
 					if ($query->code == 200)
 					{
@@ -225,7 +224,6 @@ class User extends CI_Controller {
 					{
 						$response =  array('msg' => 'Create data failed', 'type' => 'error');
 					}
-					
 					echo json_encode($response);
 					exit();
 				}
