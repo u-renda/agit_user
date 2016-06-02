@@ -56,6 +56,38 @@ class Job_analyst extends CI_Controller {
 		$this->load->view('templates/frame', $data);
 	}
 	
+	function job_analyst_edit()
+	{
+		if ($this->input->post('submit') == TRUE)
+		{
+			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_analyst_name');
+			
+			if ($this->form_validation->run() == TRUE)
+			{
+				$param = array();
+				$param['name'] = $this->input->post('name');
+				$param['description'] = $this->input->post('description');
+				$query = $this->job_analyst_model->create($param);
+				
+				if ($query->code == 200)
+				{
+					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'));
+				}
+				else
+				{
+					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+				}
+				
+				echo json_encode($response);
+				exit();
+			}
+		}
+		
+		$data['frame_content'] = 'job_analyst/job_analyst_update';
+		$this->load->view('templates/frame', $data);
+	}
+	
+	
 	function job_analyst_get()
 	{
 		$page = $this->input->post('page') ? $this->input->post('page') : 1;
@@ -80,7 +112,7 @@ class Job_analyst extends CI_Controller {
 			
 			foreach ($get->result as $row)
 			{
-				$action = '<a title="Edit" href="job_analyst_edit?id='.$row->id_job_analyst.'"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
+				$action = ' <a  title="Edit" id="'.$row->id_job_analyst.'" class="edit '.$row->id_job_analyst.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
 							<a title="Delete" id="'.$row->id_job_analyst.'" class="delete '.$row->id_job_analyst.'-delete" href="#"><i class="fa fa-times font-larger font-red-thunderbird"></i></a>';
 				
 				$entry = array(

@@ -533,6 +533,7 @@ $config['link_complaint_create'] = $config['base_url'].'complaint_create';
 $config['link_dashboard'] = $config['base_url'].'dashboard';
 $config['link_job_analyst'] = $config['base_url'].'job_analyst';
 $config['link_job_analyst_create'] = $config['base_url'].'job_analyst_create';
+$config['link_job_analyst_edit'] = $config['base_url'].'job_analyst_edit';
 $config['link_job_role'] = $config['base_url'].'job_role';
 $config['link_job_role_create'] = $config['base_url'].'job_role_create';
 $config['link_login'] = $config['base_url'].'login';

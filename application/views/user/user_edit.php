@@ -107,7 +107,7 @@
                                             <label class="control-label col-md-3">Email<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('email'); ?>
-												<input type="hidden" name="email_lama" value="<?php echo $user_detail->result->email;?>"/>
+												<input type="hidden" name="email_old" value="<?php echo $user_detail->result->email;?>"/>
                                                 <input type="text" class="form-control" name="email" value="<?php if(set_value('email')!=null){ echo set_value('email');} else { echo $user_detail->result->email; }?>" />
                                                 <div class="form-control-focus"></div>
                                             </div>
@@ -120,7 +120,8 @@
                                             <label class="control-label col-md-3">Username<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('username'); ?>
-                                                <input type="text" class="form-control" name="username" value="<?php if(set_value('email')!=null){ echo set_value('username');} else { echo $user_detail->result->username; }?>" />
+                                                <input type="text" class="form-control" name="username" value="<?php if(set_value('username')!=null){ echo set_value('username');} else { echo $user_detail->result->username; }?>" />
+                                                <input type="hidden" class="form-control" name="username_old" value="<?php echo $user_detail->result->username; ?>" />
                                                 <div class="form-control-focus"></div>
                                             </div>
                                         </div>
@@ -183,7 +184,8 @@
                                                 <?php 
 												if(isset($user_detail->result->photo))
 												{
-													echo "<img alt='Dwi Yustiana' style='widht:20px;height:20px;' class='img-circle' src='".$this->config->item('link_user_upload')."/user/23083ea1668206868acab41803ff6e95.jpg'>";
+													
+													echo "<img alt='Dwi Yustiana' style='widht:20px;height:20px;' class='img-circle' src='".base_url('assets/images/user/').$user_detail->result->photo."'>";
 												} 
 												?><input type="file" class="form-control" name="photo" />
                                             </div>

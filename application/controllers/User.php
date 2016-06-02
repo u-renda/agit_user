@@ -73,22 +73,24 @@ class User extends CI_Controller {
 	{
 		$get = check_user_username($param);
 		
-        if ($get == TRUE)
-        {
-            $this->form_validation->set_message('check_user_username', '%s already exist');
-            return FALSE;
-        }
-        else
-        {
-            return TRUE;
-        }
+		if ($get == TRUE)
+		{
+			$this->form_validation->set_message('check_user_username', '%s already exist');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
 	}
+	
     function index()
 	{
 		$data = array();
 		$data['frame_content'] = 'user/user';
 		$this->load->view('templates/frame', $data);
 	}
+	
     function user_create()
 	{
 		if ($this->input->post('submit') == TRUE)
@@ -165,22 +167,29 @@ class User extends CI_Controller {
 		{
 			$data['id'] = $this->input->get("id");
 		}
-		
 		$query = $this->user_model->info(array('id_user' => $data['id']));
 		if ($query->code == 200)
 		{
 			if ($this->input->post('submit') == TRUE)
 			{
+				
 				$this->form_validation->set_error_delimiters('<div class="font-red-flamingo">', '</div>');
 				$this->form_validation->set_rules('id_position', 'Position', 'required');
 				$this->form_validation->set_rules('id_company', 'Company', 'required');
 				$this->form_validation->set_rules('id_po_name', 'PO Name', 'required');
 				$this->form_validation->set_rules('id_user_project_group', 'Project group', 'required');
-				//$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email');
-				//$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_user_name');
 				$this->form_validation->set_rules('role', 'Role', 'required');
 				$this->form_validation->set_rules('photo', 'photo', 'callback_check_photo');
+				
+				if ($this->input->post('username') != $this->input->post('username_old'))
+				{
+					$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
+				}
+				if ($this->input->post('email') != $this->input->post('email_old'))
+				{
+					$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email'); 
+				}
 				
 				if ($this->form_validation->run() == TRUE)
 				{
@@ -198,7 +207,6 @@ class User extends CI_Controller {
 					{
 						$param['password'] = $this->input->post('password');
 					}
-					
 					$param['id_user'] = $this->input->post('id_user');
 					$param['id_position'] = $this->input->post('id_position');
 					$param['id_company'] = $this->input->post('id_company');
@@ -211,7 +219,7 @@ class User extends CI_Controller {
 					$param['nik'] = $this->input->post('nik');
 					//$param['photo'] = $photo;
 					$query = $this->user_model->update($param);
-					
+					print_r($query);die();
 					if ($query->code == 200)
 					{
 						$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'));

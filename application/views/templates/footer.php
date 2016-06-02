@@ -5,7 +5,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
                         <h4 class="modal-title" id="myModalLabel"></h4>
                     </div>
-                    <div class="modal-body"></div>
+                    <div class="modal-body" id="body_modal"></div>
 					<div class="modal-footer"></div>
                 </div>
             </div>
