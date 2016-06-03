@@ -44,17 +44,15 @@ $(function () {
      $(this).delegate(".edit", "click", function()
     {
         var id = $(this).attr("id");
-        console.log( id );
         var action = "job_analyst_edit";
         $.ajax({
 			type : "POST",
 			url : newPathname + action,
 			data: {id: id},
 			success: function(data) {
-				//console.log( data );
-				//alert(updated);
-				$('#myModal').modal('show');
-				document.getElementById("application_detail2").innerHTML = data;
+				 $('#myModal').modal('show');
+				document.getElementById("body_modal").innerHTML = data;
+               
 			},
 		});
       

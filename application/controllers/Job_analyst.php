@@ -58,36 +58,9 @@ class Job_analyst extends CI_Controller {
 	
 	function job_analyst_edit()
 	{
-		if ($this->input->post('submit') == TRUE)
-		{
-			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_analyst_name');
-			
-			if ($this->form_validation->run() == TRUE)
-			{
-				$param = array();
-				$param['name'] = $this->input->post('name');
-				$param['description'] = $this->input->post('description');
-				$query = $this->job_analyst_model->create($param);
-				
-				if ($query->code == 200)
-				{
-					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'));
-				}
-				else
-				{
-					$response =  array('msg' => 'Create data failed', 'type' => 'error');
-				}
-				
-				echo json_encode($response);
-				exit();
-			}
-		}
-		
 		$data['frame_content'] = 'job_analyst/job_analyst_update';
-		$this->load->view('templates/frame', $data);
+		return $this->load->view('job_analyst/job_analyst_update');
 	}
-	
-	
 	function job_analyst_get()
 	{
 		$page = $this->input->post('page') ? $this->input->post('page') : 1;

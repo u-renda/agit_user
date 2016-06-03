@@ -247,6 +247,32 @@ class User extends CI_Controller {
 		}
 	}
 	
+	
+	function user_delete()
+	{
+		$data['id'] = $this->input->get("id");
+		$query = $this->user_model->info(array('id_user' => $data['id']));
+		if ($query->code == 200)
+		{
+			$param['id_user'] = $this->input->get("id");
+			$query = $this->user_model->delete($param);
+				if ($query->code == 200)
+				{
+					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'));
+				}
+				else
+				{
+					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+				}
+			echo json_encode($response);
+			exit();
+		}
+		else
+		{
+			redirect($this->config->item('link_user'));
+		}
+	}
+	
 	function user_get()
 	{
 		$page = $this->input->post('page') ? $this->input->post('page') : 1;
