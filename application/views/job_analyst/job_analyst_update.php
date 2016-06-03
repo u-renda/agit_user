@@ -15,14 +15,14 @@
                                 <label class="control-label col-md-3">Name<span class="required"> * </span></label>
                                 <div class="col-md-9">
                                     <?php echo form_error('name'); ?>
-                                    <input type="text" class="form-control" name="name" id="name" value="<?php echo set_value('name'); ?>" />
+                                    <input type="text" class="form-control" name="name" id="name" value="<?php echo set_value('name'); ?><?php echo $rows->result->name;?>" />
                                     <div class="form-control-focus"></div>
                                 </div>
                             </div>
                             <div class="form-group form-md-line-input">
                                 <label class="control-label col-md-3">Description</label>
                                 <div class="col-md-9">
-                                    <textarea class="form-control" name="description" id="description" value="<?php echo set_value('description'); ?>" rows="4"></textarea>
+                                    <textarea class="form-control" name="description" id="description" value="<?php echo set_value('description'); ?>" rows="4"><?php echo $rows->result->description;?></textarea>
                                     <div class="form-control-focus"></div>
                                 </div>
                             </div>

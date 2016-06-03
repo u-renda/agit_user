@@ -58,8 +58,16 @@ class Job_analyst extends CI_Controller {
 	
 	function job_analyst_edit()
 	{
-		$data['frame_content'] = 'job_analyst/job_analyst_update';
-		return $this->load->view('job_analyst/job_analyst_update');
+		$data['id'] = $this->input->post('id');
+		$query = $this->job_analyst_model->info(array('id_job_analyst' => $data['id']));
+		if ($query->code == 200)
+		{
+			$data['rows']= $query;
+			return $this->load->view('job_analyst/job_analyst_update',$data);
+		}
+		else{
+			return false;
+		}
 	}
 	function job_analyst_get()
 	{
