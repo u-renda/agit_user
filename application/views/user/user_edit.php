@@ -185,7 +185,7 @@
 												if(isset($user_detail->result->photo))
 												{
 													
-													echo "<img alt='Dwi Yustiana' style='widht:20px;height:20px;' class='img-circle' src='".base_url('assets/images/user/').$user_detail->result->photo."'>";
+													echo "<img  style='widht:20px;height:20px;' src='".$user_detail->result->photo."'>";
 												} 
 												?><input type="file" class="form-control" name="photo" />
                                             </div>

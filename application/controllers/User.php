@@ -219,7 +219,6 @@ class User extends CI_Controller {
 					$param['nik'] = $this->input->post('nik');
 					//$param['photo'] = $photo;
 					$query = $this->user_model->update($param);
-					print_r($query);die();
 					if ($query->code == 200)
 					{
 						$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'));

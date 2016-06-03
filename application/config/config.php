@@ -525,7 +525,6 @@ $config['api_key'] = 'bd6fb882067e6896c1c193376cd419Ir';
 $config['cookie_key'] = '67eOO9w';
 
 $config['title'] = 'Project Management for User';
-
 $config['link_company'] = $config['base_url'].'company';
 $config['link_company_create'] = $config['base_url'].'company_create';
 $config['link_complaint'] = $config['base_url'].'complaint';
@@ -549,7 +548,7 @@ $config['link_resource_monitoring'] = $config['base_url'].'resource_monitoring';
 $config['link_user'] = $config['base_url'].'user';
 $config['link_user_create'] = $config['base_url'].'user_create';
 $config['link_user_edit'] = $config['base_url'].'user_edit';
-$config['link_user_upload'] = $config['base_url'].'upload_agit';
+
 
 // CODE
 $config['code_active_inactive'] = array(

@@ -108,3 +108,4 @@ $route['job_analyst_get'] = 'job_analyst/job_analyst_get';
 // JOB ROLE
 $route['job_role_create'] = 'job_role/job_role_create';
 $route['job_role_get'] = 'job_role/job_role_get';
+
