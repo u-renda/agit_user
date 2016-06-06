@@ -444,14 +444,19 @@ $(function () {
             transport: {
                 read: {
                     url: newPathname + "company_get",
-                    dataType: "json"
+                    dataType: "json",
+                    type: "POST"
                 }
             },
             schema: {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         pageable: {

@@ -91,9 +91,9 @@ class Company extends CI_Controller {
 				$jsonData['data'][] = $entry;
 				$i++;
 			}
+			
+			echo json_encode($jsonData);
 		}
-		
-		echo json_encode($jsonData);
 	}
 
     function index()

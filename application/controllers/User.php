@@ -168,8 +168,10 @@ class User extends CI_Controller {
 			$data['id'] = $this->input->get("id");
 		}
 		$query = $this->user_model->info(array('id_user' => $data['id']));
+		
 		if ($query->code == 200)
 		{
+			
 			if ($this->input->post('submit') == TRUE)
 			{
 				
@@ -229,6 +231,10 @@ class User extends CI_Controller {
 					}
 					echo json_encode($response);
 					exit();
+				}
+				else
+				{
+					echo "disini";die();
 				}
 			}
 			

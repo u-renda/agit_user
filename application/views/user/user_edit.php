@@ -27,11 +27,11 @@
         </ul>
         <!-- END PAGE BREADCRUMB -->
         <!-- BEGIN PAGE BASE CONTENT -->
-        <div class="row" id="page_user_create">
+        <div class="row" id="page_user_edit">
             <div class="col-md-12 col-sm-12">
                 <div class="portlet light bordered">
                     <div class="portlet-body form">
-                        <form action="<?php echo $this->config->item('link_user_edit'); ?>" method="post" class="form-horizontal" id="form_user_create" enctype="multipart/form-data">
+                        <form action="<?php echo $this->config->item('link_user_edit'); ?>" method="post" class="form-horizontal" id="form_user_edit" enctype="multipart/form-data">
                             <div class="form-body">
                                 <h3 class="form-section">User Info</h3>
                                 <div class="row">
@@ -97,7 +97,7 @@
                                             <label class="control-label col-md-3">Name<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('name'); ?>
-                                                <input type="text" class="form-control" name="name" value="<?php if(set_value('name')!=null){ echo set_value('name');} else { echo $user_detail->result->name; }?>" />
+                                                <input type="text" class="form-control" name="name" value="<?php echo $user_detail->result->name; ?>" />
                                                 <div class="form-control-focus"></div>
                                             </div>
                                         </div>
