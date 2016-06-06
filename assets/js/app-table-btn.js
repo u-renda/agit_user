@@ -40,37 +40,24 @@ $(function () {
         });
     }
     
-    //modal Edit job analyst
-     $(this).delegate(".edit", "click", function()
-    {     
-        var vInputString = $(this).attr("id");
-        var vArray = vInputString.split(",");
-        var id = vArray[0];
-        var nameAction = vArray[1];
-        if (nameAction === "Job_analyst" )
-        {
-           var action = "job_analyst_edit";
-           nameAction = "Job Analyst Edit";
-        }
-        $.ajax({
-			type : "POST",
-			url : newPathname + action,
-			data: {id: id},
-			success: function(data) {
-				 $('#myModal').modal('show');
-				document.getElementById("body_modal").innerHTML = data;
-                document.getElementById("myModalLabel").innerHTML = nameAction;
-               
-			},
-		});
-    });
-    
-   
+    //Job Analyst - Edit
+    if (document.getElementById('page_job_analyst') != null) {
+        $(this).delegate(".edit", "click", function()
+        {     
+            var id = $(this).attr("id");
+            var action = "job_analyst_edit";
+            var dataString = 'id='+ id;
+            $.ajax({
+                type : "POST",
+                url : newPathname + action,
+                data: dataString,
+                success: function(data) {
+                    $('.modal-title').text('Job Analyst Edit');
+                    $('.modal-body').html(data);
+                    $('.modal-footer').hide();
+                    $('#myModal').modal('show');
+                },
+            });
+        });
+    }
 });
-
-//modal
-
-function myFunction()
-{
-    
-}

@@ -86,7 +86,7 @@ class Job_analyst extends CI_Controller {
 			{
 				$data['nameAction'] = $this->input->post('name');
 				$data['rows']= $query;
-				return $this->load->view('job_analyst/job_analyst_update',$data);
+				return $this->load->view('job_analyst/job_analyst_edit',$data);
 			}
 		}
 		else
@@ -116,10 +116,10 @@ class Job_analyst extends CI_Controller {
 		if ($get->code == 200)
 		{
 			$jsonData['total'] = $get->total;
-			$url="Job_analyst";
+			
 			foreach ($get->result as $row)
 			{
-				$action = ' <a  title="Edit" id="'.$row->id_job_analyst.','.$url.'" class="edit '.$row->id_job_analyst.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
+				$action = ' <a  title="Edit" id="'.$row->id_job_analyst.'" class="edit '.$row->id_job_analyst.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
 							<a title="Delete" id="'.$row->id_job_analyst.'" class="delete '.$row->id_job_analyst.'-delete" href="#"><i class="fa fa-times font-larger font-red-thunderbird"></i></a>';
 				
 				$entry = array(
