@@ -3,7 +3,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="portlet light bordered">
                 <div class="portlet-body form">
-                    <form action="<?php echo $this->config->item('link_job_analyst_create'); ?>" method="post" class="form-horizontal" id="form_job_analyst_create" novalidate="novalidate">
+                    <form action="<?php echo $this->config->item('link_job_analyst_edit'); ?>" method="post" class="form-horizontal" id="form_job_analyst_edit" novalidate="novalidate">
                         <div class="form-body">
                             <div class="alert alert-danger display-hide">
                                 <button class="close" data-close="alert"></button> You have some form errors. Please check below.
@@ -15,6 +15,7 @@
                                 <label class="control-label col-md-3">Name<span class="required"> * </span></label>
                                 <div class="col-md-9">
                                     <?php echo form_error('name'); ?>
+                                    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $rows->result->id_job_analyst;?>" />
                                     <input type="text" class="form-control" name="name" id="name" value="<?php echo set_value('name'); ?><?php echo $rows->result->name;?>" />
                                     <div class="form-control-focus"></div>
                                 </div>

@@ -42,9 +42,16 @@ $(function () {
     
     //modal Edit job analyst
      $(this).delegate(".edit", "click", function()
-    {
-        var id = $(this).attr("id");
-        var action = "job_analyst_edit";
+    {     
+        var vInputString = $(this).attr("id");
+        var vArray = vInputString.split(",");
+        var id = vArray[0];
+        var nameAction = vArray[1];
+        if (nameAction === "Job_analyst" )
+        {
+           var action = "job_analyst_edit";
+           nameAction = "Job Analyst Edit";
+        }
         $.ajax({
 			type : "POST",
 			url : newPathname + action,
@@ -52,14 +59,12 @@ $(function () {
 			success: function(data) {
 				 $('#myModal').modal('show');
 				document.getElementById("body_modal").innerHTML = data;
+                document.getElementById("myModalLabel").innerHTML = nameAction;
                
 			},
 		});
-      
-        
     });
     
-   
    
 });
 

@@ -62,12 +62,38 @@ class Job_analyst extends CI_Controller {
 		$query = $this->job_analyst_model->info(array('id_job_analyst' => $data['id']));
 		if ($query->code == 200)
 		{
-			$data['rows']= $query;
-			return $this->load->view('job_analyst/job_analyst_update',$data);
+			if ($this->input->post('submit') == TRUE)
+			{
+				$param = array();
+				$param['id_job_analyst'] = $this->input->post('id');
+				$param['name'] = $this->input->post('name');
+				$param['description'] = $this->input->post('description');
+				$query = $this->job_analyst_model->update($param);
+				
+				if ($query->code == 200)
+				{
+					$response =  array('msg' => 'Update data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'));
+				}
+				else
+				{
+					$response =  array('msg' => 'Update data failed', 'type' => 'error');
+				}
+				
+				echo json_encode($response);
+				exit();
+			}
+			else
+			{
+				$data['nameAction'] = $this->input->post('name');
+				$data['rows']= $query;
+				return $this->load->view('job_analyst/job_analyst_update',$data);
+			}
 		}
-		else{
-			return false;
+		else
+		{
+			redirect($this->config->item('link_job_analyst'));
 		}
+		
 	}
 	function job_analyst_get()
 	{
@@ -90,10 +116,10 @@ class Job_analyst extends CI_Controller {
 		if ($get->code == 200)
 		{
 			$jsonData['total'] = $get->total;
-			
+			$url="Job_analyst";
 			foreach ($get->result as $row)
 			{
-				$action = ' <a  title="Edit" id="'.$row->id_job_analyst.'" class="edit '.$row->id_job_analyst.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
+				$action = ' <a  title="Edit" id="'.$row->id_job_analyst.','.$url.'" class="edit '.$row->id_job_analyst.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
 							<a title="Delete" id="'.$row->id_job_analyst.'" class="delete '.$row->id_job_analyst.'-delete" href="#"><i class="fa fa-times font-larger font-red-thunderbird"></i></a>';
 				
 				$entry = array(
@@ -111,10 +137,21 @@ class Job_analyst extends CI_Controller {
 		echo json_encode($jsonData);
 	}
 
-    function index()
+    function index($net=null)
 	{
-		$data = array();
-		$data['frame_content'] = 'job_analyst/job_analyst';
-		$this->load->view('templates/frame', $data);
+		if($net!=null)
+		{
+			$data = array();
+			$data = $net;
+			$data['frame_content'] = 'job_analyst/job_analyst';
+			$this->load->view('templates/frame', $data);
+		}
+		else
+		{
+			$data = array();
+			$data['frame_content'] = 'job_analyst/job_analyst';
+			$this->load->view('templates/frame', $data);
+		}
+		
 	}
 }
