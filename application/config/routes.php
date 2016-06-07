@@ -89,6 +89,7 @@ $route['set_session_id_project'] = 'extra/set_session_id_project';
 
 // USER
 $route['user_create'] = 'user/user_create';
+$route['user_delete'] = 'user/user_delete';
 $route['user_edit'] = 'user/user_edit';
 $route['user_get'] = 'user/user_get';
 

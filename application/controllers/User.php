@@ -256,26 +256,39 @@ class User extends CI_Controller {
 	
 	function user_delete()
 	{
-		$data['id'] = $this->input->get("id");
-		$query = $this->user_model->info(array('id_user' => $data['id']));
-		if ($query->code == 200)
+		$data = array();
+		$data['id'] = $this->input->post('id');
+		$data['action'] = $this->input->post('action');
+		$data['grid'] = $this->input->post('grid');
+		
+		$get = $this->user_model->info(array('id_user' => $data['id']));
+		
+		if ($get->code == 200)
 		{
-			$param['id_user'] = $this->input->get("id");
-			$query = $this->user_model->delete($param);
+			if ($this->input->post('delete') == TRUE)
+			{
+				$query = $this->user_model->delete(array('id_user' => $data['id']));
+				
 				if ($query->code == 200)
 				{
-					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'));
+					$response =  array('msg' => 'Delete data success', 'type' => 'success');
 				}
 				else
 				{
-					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+					$response =  array('msg' => 'Delete data failed', 'type' => 'error');
 				}
-			echo json_encode($response);
-			exit();
+				
+				echo json_encode($response);
+				exit();
+			}
+			else
+			{
+				$this->load->view('delete_confirm', $data);
+			}
 		}
 		else
 		{
-			redirect($this->config->item('link_user'));
+			echo "Data Not Found";
 		}
 	}
 	
