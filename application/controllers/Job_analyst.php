@@ -64,23 +64,27 @@ class Job_analyst extends CI_Controller {
 		{
 			if ($this->input->post('submit') == TRUE)
 			{
-				$param = array();
-				$param['id_job_analyst'] = $this->input->post('id');
-				$param['name'] = $this->input->post('name');
-				$param['description'] = $this->input->post('description');
-				$query = $this->job_analyst_model->update($param);
-				
-				if ($query->code == 200)
+				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_analyst_name');
+				if ($this->form_validation->run() == TRUE)
 				{
-					$response =  array('msg' => 'Update data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'));
+					$param = array();
+					$param['id_job_analyst'] = $this->input->post('id');
+					$param['name'] = $this->input->post('name');
+					$param['description'] = $this->input->post('description');
+					$query = $this->job_analyst_model->update($param);
+					
+					if ($query->code == 200)
+					{
+						$response =  array('msg' => 'Update data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'));
+					}
+					else
+					{
+						$response =  array('msg' => 'Update data failed', 'type' => 'error');
+					}
+					
+					echo json_encode($response);
+					exit();
 				}
-				else
-				{
-					$response =  array('msg' => 'Update data failed', 'type' => 'error');
-				}
-				
-				echo json_encode($response);
-				exit();
 			}
 			else
 			{
