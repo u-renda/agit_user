@@ -95,18 +95,31 @@ $route['user_get'] = 'user/user_get';
 
 // COMPANY
 $route['company_create'] = 'company/company_create';
+$route['company_delete'] = 'company/company_delete';
 $route['company_get'] = 'company/company_get';
 
 // POSITION
 $route['position_create'] = 'position/position_create';
+$route['position_delete'] = 'position/position_delete';
 $route['position_get'] = 'position/position_get';
 
 // JOB ANALYST
 $route['job_analyst_create'] = 'job_analyst/job_analyst_create';
+$route['job_analyst_delete'] = 'job_analyst/job_analyst_delete';
 $route['job_analyst_edit'] = 'job_analyst/job_analyst_edit';
 $route['job_analyst_get'] = 'job_analyst/job_analyst_get';
 
 // JOB ROLE
 $route['job_role_create'] = 'job_role/job_role_create';
+$route['job_role_delete'] = 'job_role/job_role_delete';
 $route['job_role_get'] = 'job_role/job_role_get';
 
+// PROJECT TYPE
+$route['project_type_create'] = 'project_type/project_type_create';
+$route['project_type_delete'] = 'project_type/project_type_delete';
+$route['project_type_get'] = 'project_type/project_type_get';
+
+// PO NAME
+$route['po_name_create'] = 'po_name/po_name_create';
+$route['po_name_delete'] = 'po_name/po_name_delete';
+$route['po_name_get'] = 'po_name/po_name_get';

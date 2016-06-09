@@ -136,8 +136,13 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="form_layouts.html" class="nav-link ">
+                        <a href="<?php echo $this->config->item('link_project_type'); ?>" class="nav-link ">
                             <span class="title">Project Type</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="<?php echo $this->config->item('link_po_name'); ?>" class="nav-link ">
+                            <span class="title">PO Name</span>
                         </a>
                     </li>
                 </ul>

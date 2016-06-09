@@ -56,6 +56,44 @@ class Job_analyst extends CI_Controller {
 		$this->load->view('templates/frame', $data);
 	}
 	
+	function job_analyst_delete()
+	{
+		$data = array();
+		$data['id'] = $this->input->post('id');
+		$data['action'] = $this->input->post('action');
+		$data['grid'] = $this->input->post('grid');
+		
+		$get = $this->job_analyst_model->info(array('id_job_analyst' => $data['id']));
+		
+		if ($get->code == 200)
+		{
+			if ($this->input->post('delete') == TRUE)
+			{
+				$query = $this->job_analyst_model->delete(array('id_job_analyst' => $data['id']));
+				
+				if ($query->code == 200)
+				{
+					$response =  array('msg' => 'Delete data success', 'type' => 'success', 'title' => 'Job Analyst');
+				}
+				else
+				{
+					$response =  array('msg' => 'Delete data failed', 'type' => 'error', 'title' => 'Job Analyst');
+				}
+				
+				echo json_encode($response);
+				exit();
+			}
+			else
+			{
+				$this->load->view('delete_confirm', $data);
+			}
+		}
+		else
+		{
+			echo "Data Not Found";
+		}
+	}
+	
 	function job_analyst_edit()
 	{
 		$data['id'] = $this->input->post('id');

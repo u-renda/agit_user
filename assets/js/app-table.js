@@ -52,7 +52,11 @@ $(function () {
             schema: {
                 data: "data"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         columns: [
@@ -81,7 +85,11 @@ $(function () {
             schema: {
                 data: "data"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         columns: [
@@ -112,7 +120,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         pageable: {
@@ -171,7 +183,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: true,
         pageable: {
@@ -223,7 +239,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: true,
         pageable: {
@@ -278,7 +298,11 @@ $(function () {
             schema: {
                 data: "data"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         columns: [
@@ -311,7 +335,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: true,
         columns: [
@@ -358,6 +386,10 @@ $(function () {
                 total: "total"
             },
             pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false,
             group: {
                 field: "Group"
             }
@@ -409,7 +441,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         pageable: {
@@ -491,7 +527,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         pageable: {
@@ -526,7 +566,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         pageable: {
@@ -563,7 +607,11 @@ $(function () {
                 data: "data",
                 total: "total"
             },
-            pageSize: 20
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
         },
         sortable: false,
         pageable: {
@@ -579,6 +627,84 @@ $(function () {
                 field: "Name"
             }, {
                 field: "Description"
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                width: 100
+            }
+        ]
+    });
+    
+    // Project Type
+    $("#grid_project_type").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "project_type_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Name"
+            }, {
+                field: "Action",
+                template: "#= data.Action #",
+                width: 100
+            }
+        ]
+    });
+    
+    // PO Name
+    $("#grid_po_name").kendoGrid({
+        dataSource: {
+            transport: {
+                read: {
+                    url: newPathname + "po_name_get",
+                    dataType: "json"
+                }
+            },
+            schema: {
+                data: "data",
+                total: "total"
+            },
+            pageSize: 20,
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            cache: false
+        },
+        sortable: false,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+            {
+                field: "No",
+                width: 40
+            }, {
+                field: "Name"
             }, {
                 field: "Action",
                 template: "#= data.Action #",

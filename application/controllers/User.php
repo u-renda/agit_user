@@ -251,7 +251,6 @@ class User extends CI_Controller {
 		}
 	}
 	
-	
 	function user_delete()
 	{
 		$data = array();
@@ -269,11 +268,11 @@ class User extends CI_Controller {
 				
 				if ($query->code == 200)
 				{
-					$response =  array('msg' => 'Delete data success', 'type' => 'success');
+					$response =  array('msg' => 'Delete data success', 'type' => 'success', 'title' => 'User');
 				}
 				else
 				{
-					$response =  array('msg' => 'Delete data failed', 'type' => 'error');
+					$response =  array('msg' => 'Delete data failed', 'type' => 'error', 'title' => 'User');
 				}
 				
 				echo json_encode($response);

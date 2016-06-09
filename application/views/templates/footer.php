@@ -38,6 +38,7 @@
         <!--<script src="<?php echo base_url('assets/js/theme').'/additional-methods.min.js'; ?>" type="text/javascript"></script>-->
         <script src="<?php echo base_url('assets/js/theme').'/jquery.bootstrap.wizard.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/jquery-ui.min.js'; ?>" type="text/javascript"></script>
+		<script src="<?php echo base_url('assets/js/theme').'/pnotify.custom.js'; ?>" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="<?php echo base_url('assets/js/theme').'/app.min.js'; ?>" type="text/javascript"></script>

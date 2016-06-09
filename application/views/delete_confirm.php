@@ -27,6 +27,11 @@ $(document).ready(function() {
                 $('#myModal').modal('hide');
                 $('#' + grid).data('kendoGrid').dataSource.read();
                 $('#' + grid).data('kendoGrid').refresh();
+                new PNotify({
+                    title: response.title,
+                    text: response.msg,
+                    type: response.type
+                });
             }
         });
         return false;
