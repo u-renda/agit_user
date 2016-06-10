@@ -40,7 +40,7 @@
                                             <label class="col-md-3 control-label">Company<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('id_company'); ?>
-                                                <select class="form-control" name="id_company">
+                                                <select class="form-control" name="id_company" id="id_company">
                                                     <option value="">-- Select --</option>
                                                     <?php foreach ($company_lists as $row) { ?>
                                                     <option value="<?php echo $row->id_company; ?>" <?php echo set_select('id_company', $row->id_company); ?>><?php echo ucwords($row->name); ?></option>
@@ -55,7 +55,7 @@
                                             <label class="col-md-3 control-label">Position<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('id_position'); ?>
-                                                <select class="form-control" name="id_position">
+                                                <select class="form-control" name="id_position" id="id_position">
                                                     <option value="">-- Select --</option>
                                                     <?php foreach ($position_lists as $row) { ?>
                                                     <option value="<?php echo $row->id_position; ?>" <?php echo set_select('id_position', $row->id_position); ?>><?php echo ucwords($row->name); ?></option>
@@ -72,7 +72,7 @@
                                             <label class="control-label col-md-3">Name<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('name'); ?>
-                                                <input type="text" class="form-control" name="name" value="<?php echo set_value('name'); ?>" />
+                                                <input type="text" class="form-control" id="name" name="name" value="<?php echo set_value('name'); ?>" />
                                                 <div class="form-control-focus"></div>
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                             <label class="control-label col-md-3">Email<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('email'); ?>
-                                                <input type="text" class="form-control" name="email" value="<?php echo set_value('email'); ?>" />
+                                                <input type="text" class="form-control" name="email" id="email" value="<?php echo set_value('email'); ?>" />
                                                 <div class="form-control-focus"></div>
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                                             <label class="control-label col-md-3">Username<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('username'); ?>
-                                                <input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" />
+                                                <input type="text" class="form-control" name="username" id="username" value="<?php echo set_value('username'); ?>" />
                                                 <div class="form-control-focus"></div>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                             <label class="control-label col-md-3">Password<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('password'); ?>
-                                                <input type="password" class="form-control" name="password" />
+                                                <input type="password" class="form-control" name="password" id="password" />
                                                 <div class="form-control-focus"></div>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@
                                             <label class="col-md-3 control-label">Role<span class="required"> * </span></label>
                                             <div class="col-md-9">
                                                 <?php echo form_error('role'); ?>
-                                                <select class="form-control" name="role">
+                                                <select class="form-control" name="role" id="role">
                                                     <option value="">-- Select --</option>
                                                     <?php foreach ($code_user_role as $key => $val) { ?>
                                                     <option value="<?php echo $key; ?>" <?php echo set_select('role', $key); ?>><?php echo ucwords($val); ?></option>
@@ -133,7 +133,7 @@
                                         <div class="form-group form-md-line-input">
                                             <label class="control-label col-md-3">NIK</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="nik" value="<?php echo set_value('nik'); ?>" />
+                                                <input type="text" class="form-control" id="nik" name="nik" value="<?php echo set_value('nik'); ?>" />
                                                 <div class="form-control-focus"></div>
                                             </div>
                                         </div>
@@ -142,7 +142,7 @@
                                         <div class="form-group form-md-line-input">
                                             <label class="control-label col-md-3">Photo</label>
                                             <div class="col-md-9">
-                                                <input type="file" class="form-control" name="photo" />
+                                                <input type="file" class="form-control" name="photo" id="photo"/>
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                     <label class="col-md-3 control-label">PO Name<span class="required"> * </span></label>
                                     <div class="col-md-9">
                                         <?php echo form_error('id_po_name'); ?>
-                                        <select class="form-control" name="id_po_name">
+                                        <select class="form-control" name="id_po_name" id="id_po_name">
                                             <option value="">-- Select --</option>
                                             <?php foreach ($po_name_lists as $row) { ?>
                                             <option value="<?php echo $row->id_po_name; ?>" <?php echo set_select('id_po_name', $row->id_po_name); ?>><?php echo ucwords($row->name); ?></option>
@@ -165,7 +165,7 @@
                                     <label class="col-md-3 control-label">Project Group<span class="required"> * </span></label>
                                     <div class="col-md-9">
                                         <?php echo form_error('id_user_project_group'); ?>
-                                        <select class="form-control" name="id_user_project_group">
+                                        <select class="form-control" name="id_user_project_group" id="id_user_project_group">
                                             <option value="">-- Select --</option>
                                             <?php foreach ($user_project_group_lists as $row) { ?>
                                             <option value="<?php echo $row->id_user_project_group; ?>" <?php echo set_select('id_user_project_group', $row->id_user_project_group); ?>><?php echo ucwords($row->name); ?></option>
