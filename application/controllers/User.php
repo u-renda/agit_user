@@ -54,9 +54,9 @@ class User extends CI_Controller {
         }
 	}
 	
-	function check_user_name($param)
+	function check_user_name()
 	{
-		$get = check_user_name($param);
+		$get = check_user_name($this->input->post('name'));
 		
         if ($get == TRUE)
         {
@@ -109,6 +109,7 @@ class User extends CI_Controller {
 			
 			if ($this->form_validation->run() == TRUE)
 			{
+				print_r($this->input->post());die();
 				if (isset($_FILES['photo']))
                 {
                     if ($_FILES["photo"]["error"] == 0)
