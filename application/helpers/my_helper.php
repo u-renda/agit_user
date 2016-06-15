@@ -17,11 +17,11 @@ if ( ! function_exists('check_company_name')) {
 		
 		if ($get->code == 200)
 		{
-			return TRUE;
+			return FALSE;
 		}
 		else
 		{
-			return FALSE;
+			return TRUE;
 		}
     }
 }
@@ -111,11 +111,11 @@ if ( ! function_exists('check_job_analyst_name')) {
 		
 		if ($get->code == 200)
 		{
-			return TRUE;
+			return FALSE;
 		}
 		else
 		{
-			return FALSE;
+			return TRUE;
 		}
     }
 }
@@ -137,11 +137,11 @@ if ( ! function_exists('check_job_role_name')) {
 		
 		if ($get->code == 200)
 		{
-			return TRUE;
+			return FALSE;
 		}
 		else
 		{
-			return FALSE;
+			return TRUE;
 		}
     }
 }
@@ -163,11 +163,11 @@ if ( ! function_exists('check_position_name')) {
 		
 		if ($get->code == 200)
 		{
-			return TRUE;
+			return FALSE;
 		}
 		else
 		{
-			return FALSE;
+			return TRUE;
 		}
     }
 }
@@ -189,11 +189,11 @@ if ( ! function_exists('check_user_email')) {
         
         if ($get->code == 200)
         {
-            return TRUE;
+            return FALSE;
         }
         else
         {
-            return FALSE;
+            return TRUE;
         }
     }
 }
@@ -215,11 +215,11 @@ if ( ! function_exists('check_user_name')) {
         
         if ($get->code == 200)
         {
-            return TRUE;
+            return FALSE;
         }
         else
         {
-            return FALSE;
+            return TRUE;
         }
     }
 }
@@ -241,11 +241,11 @@ if ( ! function_exists('check_user_username')) {
         
         if ($get->code == 200)
         {
-            return TRUE;
+            return FALSE;
         }
         else
         {
-            return FALSE;
+            return TRUE;
         }
     }
 }

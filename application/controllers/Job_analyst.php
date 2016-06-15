@@ -14,7 +14,7 @@ class Job_analyst extends CI_Controller {
 	{
 		$get = check_job_analyst_name($param);
 		
-        if ($get == TRUE)
+        if ($get == FALSE)
         {
             $this->form_validation->set_message('check_job_analyst_name', '%s already exist');
             return FALSE;
@@ -31,7 +31,11 @@ class Job_analyst extends CI_Controller {
 		{
 			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_analyst_name');
 			
-			if ($this->form_validation->run() == TRUE)
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data['error'] = validation_errors();
+			}
+			else
 			{
 				$param = array();
 				$param['name'] = $this->input->post('name');

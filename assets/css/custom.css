@@ -48,6 +48,9 @@
 .full-width {
     width: 100%;
 }
+.help-block-error {
+    color: #a94442;
+}
 
 /* KENDO GRID */
 .k-grid-header th.k-header {

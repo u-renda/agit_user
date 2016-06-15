@@ -14,7 +14,7 @@ class Extra extends CI_Controller {
 		$name = $this->input->post('name');
 		$get = check_company_name($name);
 	
-		if ($get == TRUE && $selfname != $name)
+		if ($get == FALSE && $selfname != $name)
 		{
 			echo 'false';
 		}
@@ -29,8 +29,8 @@ class Extra extends CI_Controller {
 		$selfname = $this->input->post('selfname');
 		$name = $this->input->post('name');
 		$get = check_job_analyst_name($name);
-	
-		if ($get == TRUE && $selfname != $name)
+		
+		if ($get == FALSE && $selfname != $name)
 		{
 			echo 'false';
 		}
@@ -46,7 +46,7 @@ class Extra extends CI_Controller {
 		$name = $this->input->post('name');
 		$get = check_job_role_name($name);
 	
-		if ($get == TRUE && $selfname != $name)
+		if ($get == FALSE && $selfname != $name)
 		{
 			echo 'false';
 		}
@@ -62,7 +62,7 @@ class Extra extends CI_Controller {
 		$name = $this->input->post('name');
 		$get = check_position_name($name);
 	
-		if ($get == TRUE && $selfname != $name)
+		if ($get == FALSE && $selfname != $name)
 		{
 			echo 'false';
 		}

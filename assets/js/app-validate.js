@@ -381,7 +381,9 @@ $(function () {
                     cache: false,
                     success: function(data)
                     {
+                        console.log(data);
                         var response = $.parseJSON(data);
+                        
                         if (response.type == 'success')
                         {
                             setTimeout("location.href = '"+response.location+"'",2000);
