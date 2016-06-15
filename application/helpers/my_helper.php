@@ -477,6 +477,22 @@ if ( ! function_exists('logging_create')) {
 
 /*
 +-------------------------------------+
+    Name: replace_new_line
+    Purpose: replace \r\n into HTML tag
+    @param return : HTML tag
++-------------------------------------+
+*/
+if ( ! function_exists('replace_new_line'))
+{
+    function replace_new_line($param)
+    {
+        $CI =& get_instance();
+		return str_replace(array("\\r\\n", "\\r", "\\n"), "<br />", $param);
+	}
+}
+
+/*
++-------------------------------------+
     Name: save_resize
     Purpose: resize dan save image yang di upload
     @param return : TRUE atau FALSE

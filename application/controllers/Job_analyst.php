@@ -171,7 +171,7 @@ class Job_analyst extends CI_Controller {
 				$entry = array(
 					'No' => $i,
 					'Name' => ucwords($row->name),
-					'Description' => $row->description,
+					'Description' => replace_new_line($row->description),
 					'Action' => $action
 				);
 				
