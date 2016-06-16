@@ -2,6 +2,7 @@
 <div class="row" id="page_job_analyst_edit">
     <div class="col-md-12 col-sm-12">
         <form action="<?php echo $this->config->item('link_job_analyst_edit'); ?>" method="post" class="form-horizontal" id="form_job_analyst_edit" novalidate="novalidate">
+            <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $id;?>" />
             <div class="form-body">
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button> You have some form errors. Please check below.
@@ -12,16 +13,16 @@
                 <div class="form-group form-md-line-input">
                     <label class="control-label col-md-3">Name<span class="required"> * </span></label>
                     <div class="col-md-9">
-                        <?php echo form_error('name'); ?>
-                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $rows->result->id_job_analyst;?>" />
-                        <input type="text" class="form-control" name="name" id="name" value="<?php echo set_value('name'); ?><?php echo $rows->result->name;?>" />
+                        <input type="hidden" id="selfname" name="selfname" value="<?php echo $rows->name; ?>"/>
+                        <input type="text" class="form-control" name="name" id="name" value="<?php echo set_value('name'); ?><?php echo $rows->name; ?>" />
+                        <?php echo '<span class="help-block help-block-error">'.form_error('name').'</span>'; ?>
                         <div class="form-control-focus"></div>
                     </div>
                 </div>
                 <div class="form-group form-md-line-input">
                     <label class="control-label col-md-3">Description</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" name="description" id="description" value="<?php echo set_value('description'); ?>" rows="4"><?php echo $rows->result->description;?></textarea>
+                        <textarea class="form-control" name="description" id="description" value="<?php echo set_value('description'); ?>" rows="4"><?php echo stripcslashes($rows->description); ?></textarea>
                         <div class="form-control-focus"></div>
                     </div>
                 </div>
@@ -40,3 +41,85 @@
     </div>
 </div>
 <!-- END PAGE BASE CONTENT -->
+
+<script type="text/javascript">
+$(document).ready(function () {
+    var e=$("#form_job_analyst_edit"),
+        r=$(".alert-danger", e),
+        i=$(".alert-success", e),
+        grid="grid_job_analyst";
+        
+    e.validate({
+        errorElement:"span",
+        errorClass:"help-block help-block-error",
+        focusInvalid:!1,
+        ignore:"",
+        rules: {
+            name: {
+                required: true,
+                remote: {
+                    url: newPathname + "check_job_analyst_name",
+                    type: "post",
+                    data: {
+                        selfname: function() {
+                            return $("#selfname").val();
+                        },
+                        name: function() {
+                            return $("#name").val();
+                        }
+                    }
+                }
+            }
+        },
+        messages: {
+            name: {
+                required:"Please insert job analyst name.",
+                remote: "Name already exist"
+            }
+        },
+        invalidHandler:function(e, t) {
+            i.hide(), r.show(), App.scrollTo(r, -200)
+        },
+        errorPlacement:function(e, r) {
+            r.is(":checkbox")?e.insertAfter(r.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline")): r.is(":radio")?e.insertAfter(r.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline")): e.insertAfter(r)
+        },
+        highlight:function(e) {
+            $(e).closest(".form-group").addClass("has-error")
+        },
+        unhighlight:function(e) {
+            $(e).closest(".form-group").removeClass("has-error")
+        },
+        success:function(e) {
+            e.closest(".form-group").removeClass("has-error")
+        },
+        submitHandler:function(e) {
+            i.show(), r.hide();
+            $('.modal-title').text('Please wait...');
+            $('.modal-body').html('<i class="fa fa-spinner fa-spin" style="font-size: 34px;"></i>');
+            $('.modal-dialog').addClass('modal-sm');
+            $('#myModal').modal('show');
+            $.ajax(
+            {
+                type: "POST",
+                url: e.action,
+                data: $(e).serialize(), 
+                cache: false,
+                success: function(data)
+                {
+                    var response = $.parseJSON(data);
+                    $('#myModal').modal('hide');
+                    $('#' + grid).data('kendoGrid').dataSource.read();
+                    $('#' + grid).data('kendoGrid').refresh();
+                    new PNotify({
+                        title: response.title,
+                        text: response.msg,
+                        type: response.type
+                    });
+                }
+            });
+        }
+    });
+    
+    return false;
+});
+</script>

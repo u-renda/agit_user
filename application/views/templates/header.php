@@ -37,6 +37,11 @@
         <link href="<?php echo base_url('assets/css/theme').'/light.min.css'; ?>" rel="stylesheet" type="text/css" id="style_color" />
         <link href="<?php echo base_url('assets/css').'/custom.css'; ?>" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
+        <!-- BEGIN JAVASCRIPT -->
+        <script src="<?php echo base_url('assets/js').'/jquery.min.js'; ?>" type="text/javascript"></script>
+        <!-- BEGIN KENDO GRID -->
+		<script src="<?php echo base_url('assets/js/kendo'); ?>/kendo.all.min.js" type="text/javascript"></script>
+		<!-- END KENDO GRID -->
         <link rel="shortcut icon" href="#" />
     </head>
     <!-- END HEAD -->

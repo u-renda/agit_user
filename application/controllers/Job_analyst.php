@@ -10,11 +10,13 @@ class Job_analyst extends CI_Controller {
 		$this->load->model('job_analyst_model');
 	}
 	
-	function check_job_analyst_name($param)
+	function check_job_analyst_name()
 	{
-		$get = check_job_analyst_name($param);
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_job_analyst_name($name);
 		
-        if ($get == FALSE)
+        if ($get == FALSE && $selfname != $name)
         {
             $this->form_validation->set_message('check_job_analyst_name', '%s already exist');
             return FALSE;
@@ -25,8 +27,17 @@ class Job_analyst extends CI_Controller {
         }
 	}
 
+    function index()
+	{
+		$data = array();
+		$data['frame_content'] = 'job_analyst/job_analyst';
+		$this->load->view('templates/frame', $data);
+	}
+
     function job_analyst_create()
 	{
+		$data = array();
+		
 		if ($this->input->post('submit') == TRUE)
 		{
 			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_analyst_name');
@@ -100,24 +111,27 @@ class Job_analyst extends CI_Controller {
 	
 	function job_analyst_edit()
 	{
+		$data = array();
 		$data['id'] = $this->input->post('id');
 		$query = $this->job_analyst_model->info(array('id_job_analyst' => $data['id']));
+		
 		if ($query->code == 200)
 		{
 			if ($this->input->post('submit') == TRUE)
 			{
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_analyst_name');
+				
 				if ($this->form_validation->run() == TRUE)
 				{
 					$param = array();
-					$param['id_job_analyst'] = $this->input->post('id');
+					$param['id_job_analyst'] = $data['id'];
 					$param['name'] = $this->input->post('name');
 					$param['description'] = $this->input->post('description');
-					$query = $this->job_analyst_model->update($param);
+					$query2 = $this->job_analyst_model->update($param);
 					
-					if ($query->code == 200)
+					if ($query2->code == 200)
 					{
-						$response =  array('msg' => 'Update data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'));
+						$response =  array('msg' => 'Update data success', 'type' => 'success', 'title' => 'Job Analyst');
 					}
 					else
 					{
@@ -131,16 +145,16 @@ class Job_analyst extends CI_Controller {
 			else
 			{
 				$data['nameAction'] = $this->input->post('name');
-				$data['rows']= $query;
-				return $this->load->view('job_analyst/job_analyst_edit',$data);
+				$data['rows']= $query->result;
+				$this->load->view('job_analyst/job_analyst_edit', $data);
 			}
 		}
 		else
 		{
-			redirect($this->config->item('link_job_analyst'));
+			echo "Data Not Found";
 		}
-		
 	}
+	
 	function job_analyst_get()
 	{
 		$page = $this->input->post('page') ? $this->input->post('page') : 1;
@@ -181,23 +195,5 @@ class Job_analyst extends CI_Controller {
 		}
 		
 		echo json_encode($jsonData);
-	}
-
-    function index($net=null)
-	{
-		if($net!=null)
-		{
-			$data = array();
-			$data = $net;
-			$data['frame_content'] = 'job_analyst/job_analyst';
-			$this->load->view('templates/frame', $data);
-		}
-		else
-		{
-			$data = array();
-			$data['frame_content'] = 'job_analyst/job_analyst';
-			$this->load->view('templates/frame', $data);
-		}
-		
 	}
 }

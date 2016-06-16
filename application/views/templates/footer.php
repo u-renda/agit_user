@@ -23,7 +23,6 @@
         </div>
         <!-- END FOOTER -->
         <!-- BEGIN CORE PLUGINS -->
-        <script src="<?php echo base_url('assets/js').'/jquery.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js').'/bootstrap.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/js.cookie.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/bootstrap-hover-dropdown.min.js'; ?>" type="text/javascript"></script>
@@ -35,7 +34,7 @@
 		<!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="<?php echo base_url('assets/js/theme').'/bootstrap-datepicker.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/jquery.validate.min.js'; ?>" type="text/javascript"></script>
-        <!--<script src="<?php echo base_url('assets/js/theme').'/additional-methods.min.js'; ?>" type="text/javascript"></script>-->
+        <script src="<?php echo base_url('assets/js/theme').'/additional-methods.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/jquery.bootstrap.wizard.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/jquery-ui.min.js'; ?>" type="text/javascript"></script>
 		<script src="<?php echo base_url('assets/js/theme').'/pnotify.custom.js'; ?>" type="text/javascript"></script>
@@ -52,9 +51,6 @@
         <script src="<?php echo base_url('assets/js/theme').'/demo.min.js'; ?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/theme').'/quick-sidebar.min.js'; ?>" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-		<!-- BEGIN KENDO GRID -->
-		<script src="<?php echo base_url('assets/js/kendo'); ?>/kendo.all.min.js" type="text/javascript"></script>
-		<!-- END KENDO GRID -->
 		<script src="<?php echo base_url('assets/js').'/app.js'; ?>" type="text/javascript"></script>
 		<script src="<?php echo base_url('assets/js').'/app-table.js'; ?>" type="text/javascript"></script>
 		<script src="<?php echo base_url('assets/js').'/app-table-btn.js'; ?>" type="text/javascript"></script>
