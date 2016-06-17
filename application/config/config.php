@@ -542,6 +542,7 @@ $config['link_logout'] = $config['base_url'].'logout';
 $config['link_po_name'] = $config['base_url'].'po_name';
 $config['link_position'] = $config['base_url'].'position';
 $config['link_position_create'] = $config['base_url'].'position_create';
+$config['link_position_edit'] = $config['base_url'].'position_edit';
 $config['link_project'] = $config['base_url'].'project';
 $config['link_project_create'] = $config['base_url'].'project_create';
 $config['link_project_monitoring'] = $config['base_url'].'project_monitoring';

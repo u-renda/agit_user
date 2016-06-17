@@ -102,6 +102,7 @@ $route['company_get'] = 'company/company_get';
 // POSITION
 $route['position_create'] = 'position/position_create';
 $route['position_delete'] = 'position/position_delete';
+$route['position_edit'] = 'position/position_edit';
 $route['position_get'] = 'position/position_get';
 
 // JOB ANALYST
