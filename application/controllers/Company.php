@@ -10,11 +10,13 @@ class Company extends CI_Controller {
 		$this->load->model('company_model');
 	}
 	
-	function check_company_name($param)
+	function check_company_name()
 	{
-		$get = check_company_name($param);
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_company_name($name);
 		
-        if ($get == TRUE)
+        if ($get == FALSE && $selfname != $name)
         {
             $this->form_validation->set_message('check_company_name', '%s already exist');
             return FALSE;
@@ -25,13 +27,26 @@ class Company extends CI_Controller {
         }
 	}
 
+    function index()
+	{
+		$data = array();
+		$data['frame_content'] = 'company/company';
+		$this->load->view('templates/frame', $data);
+	}
+
     function company_create()
 	{
+		$data = array();
+		
 		if ($this->input->post('submit') == TRUE)
 		{
 			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_company_name');
 			
-			if ($this->form_validation->run() == TRUE)
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data['error'] = validation_errors();
+			}
+			else
 			{
 				$param = array();
 				$param['name'] = $this->input->post('name');
@@ -39,11 +54,11 @@ class Company extends CI_Controller {
 				
 				if ($query->code == 200)
 				{
-					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_company'));
+					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_company'), 'title' => 'Company');
 				}
 				else
 				{
-					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+					$response =  array('msg' => 'Create data failed', 'type' => 'error', 'title' => 'Company');
 				}
 				
 				echo json_encode($response);
@@ -93,6 +108,50 @@ class Company extends CI_Controller {
 		}
 	}
 	
+	function company_edit()
+	{
+		$data = array();
+		$data['id'] = $this->input->post('id');
+		$query = $this->company_model->info(array('id_company' => $data['id']));
+		
+		if ($query->code == 200)
+		{
+			if ($this->input->post('submit') == TRUE)
+			{
+				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_company_name');
+				
+				if ($this->form_validation->run() == TRUE)
+				{
+					$param = array();
+					$param['id_company'] = $data['id'];
+					$param['name'] = $this->input->post('name');
+					$query2 = $this->company_model->update($param);
+					
+					if ($query2->code == 200)
+					{
+						$response =  array('msg' => 'Update data success', 'type' => 'success', 'title' => 'Company');
+					}
+					else
+					{
+						$response =  array('msg' => 'Update data failed', 'type' => 'error', 'title' => 'Company');
+					}
+					
+					echo json_encode($response);
+					exit();
+				}
+			}
+			else
+			{
+				$data['rows']= $query->result;
+				$this->load->view('company/company_edit', $data);
+			}
+		}
+		else
+		{
+			echo "Data Not Found";
+		}
+	}
+	
 	function company_get()
 	{
 		$page = $this->input->post('page') ? $this->input->post('page') : 1;
@@ -117,7 +176,7 @@ class Company extends CI_Controller {
 			
 			foreach ($get->result as $row)
 			{
-				$action = '<a title="Edit" href="company_edit?id='.$row->id_company.'"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
+				$action = '<a title="Edit" id="'.$row->id_company.'" class="edit '.$row->id_company.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
 							<a title="Delete" id="'.$row->id_company.'" class="delete '.$row->id_company.'-delete" href="#"><i class="fa fa-times font-larger font-red-thunderbird"></i></a>';
 				
 				$entry = array(
@@ -129,15 +188,8 @@ class Company extends CI_Controller {
 				$jsonData['data'][] = $entry;
 				$i++;
 			}
-			
-			echo json_encode($jsonData);
 		}
-	}
-
-    function index()
-	{
-		$data = array();
-		$data['frame_content'] = 'company/company';
-		$this->load->view('templates/frame', $data);
+		
+		echo json_encode($jsonData);
 	}
 }

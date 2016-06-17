@@ -96,6 +96,7 @@ $route['user_get'] = 'user/user_get';
 // COMPANY
 $route['company_create'] = 'company/company_create';
 $route['company_delete'] = 'company/company_delete';
+$route['company_edit'] = 'company/company_edit';
 $route['company_get'] = 'company/company_get';
 
 // POSITION

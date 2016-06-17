@@ -36,6 +36,8 @@ class Job_role extends CI_Controller {
 
     function job_role_create()
 	{
+		$data = array();
+		
 		if ($this->input->post('submit') == TRUE)
 		{
 			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_role_name');

@@ -527,6 +527,7 @@ $config['cookie_key'] = '67eOO9w';
 $config['title'] = 'Project Management for User';
 $config['link_company'] = $config['base_url'].'company';
 $config['link_company_create'] = $config['base_url'].'company_create';
+$config['link_company_edit'] = $config['base_url'].'company_edit';
 $config['link_complaint'] = $config['base_url'].'complaint';
 $config['link_complaint_create'] = $config['base_url'].'complaint_create';
 $config['link_dashboard'] = $config['base_url'].'dashboard';
