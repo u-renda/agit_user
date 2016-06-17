@@ -535,6 +535,7 @@ $config['link_job_analyst_create'] = $config['base_url'].'job_analyst_create';
 $config['link_job_analyst_edit'] = $config['base_url'].'job_analyst_edit';
 $config['link_job_role'] = $config['base_url'].'job_role';
 $config['link_job_role_create'] = $config['base_url'].'job_role_create';
+$config['link_job_role_edit'] = $config['base_url'].'job_role_edit';
 $config['link_login'] = $config['base_url'].'login';
 $config['link_logout'] = $config['base_url'].'logout';
 $config['link_po_name'] = $config['base_url'].'po_name';

@@ -10,11 +10,13 @@ class Job_role extends CI_Controller {
 		$this->load->model('job_role_model');
 	}
 	
-	function check_job_role_name($param)
+	function check_job_role_name()
 	{
-		$get = check_job_role_name($param);
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_job_role_name($name);
 		
-        if ($get == TRUE)
+        if ($get == FALSE && $selfname != $name)
         {
             $this->form_validation->set_message('check_job_role_name', '%s already exist');
             return FALSE;
@@ -23,6 +25,13 @@ class Job_role extends CI_Controller {
         {
             return TRUE;
         }
+	}
+
+    function index()
+	{
+		$data = array();
+		$data['frame_content'] = 'job_role/job_role';
+		$this->load->view('templates/frame', $data);
 	}
 
     function job_role_create()
@@ -40,11 +49,11 @@ class Job_role extends CI_Controller {
 				
 				if ($query->code == 200)
 				{
-					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_job_role'));
+					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_job_role'), 'title' => 'Job Role');
 				}
 				else
 				{
-					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+					$response =  array('msg' => 'Create data failed', 'type' => 'error', 'title' => 'Job Role');
 				}
 				
 				echo json_encode($response);
@@ -94,6 +103,51 @@ class Job_role extends CI_Controller {
 		}
 	}
 	
+	function job_role_edit()
+	{
+		$data = array();
+		$data['id'] = $this->input->post('id');
+		$query = $this->job_role_model->info(array('id_job_role' => $data['id']));
+		
+		if ($query->code == 200)
+		{
+			if ($this->input->post('submit') == TRUE)
+			{
+				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_job_role_name');
+				
+				if ($this->form_validation->run() == TRUE)
+				{
+					$param = array();
+					$param['id_job_role'] = $data['id'];
+					$param['name'] = $this->input->post('name');
+					$param['description'] = $this->input->post('description');
+					$query2 = $this->job_role_model->update($param);
+					
+					if ($query2->code == 200)
+					{
+						$response =  array('msg' => 'Update data success', 'type' => 'success', 'title' => 'Job Role');
+					}
+					else
+					{
+						$response =  array('msg' => 'Update data failed', 'type' => 'error', 'title' => 'Job Role');
+					}
+					
+					echo json_encode($response);
+					exit();
+				}
+			}
+			else
+			{
+				$data['rows']= $query->result;
+				$this->load->view('job_role/job_role_edit', $data);
+			}
+		}
+		else
+		{
+			echo "Data Not Found";
+		}
+	}
+	
 	function job_role_get()
 	{
 		$page = $this->input->post('page') ? $this->input->post('page') : 1;
@@ -118,13 +172,13 @@ class Job_role extends CI_Controller {
 			
 			foreach ($get->result as $row)
 			{
-				$action = '<a title="Edit" href="job_role_edit?id='.$row->id_job_role.'"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
+				$action = '<a title="Edit" id="'.$row->id_job_role.'" class="edit '.$row->id_job_role.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
 							<a title="Delete" id="'.$row->id_job_role.'" class="delete '.$row->id_job_role.'-delete" href="#"><i class="fa fa-times font-larger font-red-thunderbird"></i></a>';
 				
 				$entry = array(
 					'No' => $i,
 					'Name' => ucwords($row->name),
-					'Description' => $row->description,
+					'Description' => replace_new_line($row->description),
 					'Action' => $action
 				);
 				
@@ -134,12 +188,5 @@ class Job_role extends CI_Controller {
 		}
 		
 		echo json_encode($jsonData);
-	}
-
-    function index()
-	{
-		$data = array();
-		$data['frame_content'] = 'job_role/job_role';
-		$this->load->view('templates/frame', $data);
 	}
 }

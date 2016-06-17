@@ -43,12 +43,19 @@ class Login extends CI_Controller {
 				
 				if ($check_pass == $this->input->cookie('password'))
 				{
+					$photo = $user->photo;
+					
+					if ($photo == '')
+					{
+						$photo = base_url('assets/images').'/user_default_35.png';
+					}
+					
 					$cached = array(
 						'id_user'=> $user->id_user,
 						'username'=> $user->username,
 						'name'=> $user->name,
 						'email'=> $user->email,
-						'photo'=> $user->photo,
+						'photo'=> $photo,
 						'role'=> $code_user_role[$user->role],
 						'role_id'=> $user->role,
 						'is_login' => TRUE
@@ -78,13 +85,19 @@ class Login extends CI_Controller {
 				if ($query->code == 200)
 				{
 					$user = $query->result;
+					$photo = $user->photo;
+					
+					if ($photo == '')
+					{
+						$photo = base_url('assets/images').'/user_default_35.png';
+					}
 					
 					$cached = array(
 						'id_user'=> $user->id_user,
 						'username'=> $user->username,
 						'name'=> $user->name,
 						'email'=> $user->email,
-						'photo'=> $user->photo,
+						'photo'=> $photo,
 						'role'=> $code_user_role[$user->role],
 						'role_id'=> $user->role,
 						'is_login' => TRUE

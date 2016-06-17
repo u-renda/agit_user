@@ -627,7 +627,8 @@ $(function () {
             }, {
                 field: "Name"
             }, {
-                field: "Description"
+                field: "Description",
+                template: "#= data.Description #",
             }, {
                 field: "Action",
                 template: "#= data.Action #",

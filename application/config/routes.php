@@ -112,6 +112,7 @@ $route['job_analyst_get'] = 'job_analyst/job_analyst_get';
 // JOB ROLE
 $route['job_role_create'] = 'job_role/job_role_create';
 $route['job_role_delete'] = 'job_role/job_role_delete';
+$route['job_role_edit'] = 'job_role/job_role_edit';
 $route['job_role_get'] = 'job_role/job_role_get';
 
 // PROJECT TYPE

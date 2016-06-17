@@ -55,11 +55,11 @@ class Job_analyst extends CI_Controller {
 				
 				if ($query->code == 200)
 				{
-					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'));
+					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_job_analyst'), 'title' => 'Job Analyst');
 				}
 				else
 				{
-					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+					$response =  array('msg' => 'Create data failed', 'type' => 'error', 'title' => 'Job Analyst');
 				}
 				
 				echo json_encode($response);
@@ -135,7 +135,7 @@ class Job_analyst extends CI_Controller {
 					}
 					else
 					{
-						$response =  array('msg' => 'Update data failed', 'type' => 'error');
+						$response =  array('msg' => 'Update data failed', 'type' => 'error', 'title' => 'Job Analyst');
 					}
 					
 					echo json_encode($response);
@@ -144,7 +144,6 @@ class Job_analyst extends CI_Controller {
 			}
 			else
 			{
-				$data['nameAction'] = $this->input->post('name');
 				$data['rows']= $query->result;
 				$this->load->view('job_analyst/job_analyst_edit', $data);
 			}
@@ -179,7 +178,7 @@ class Job_analyst extends CI_Controller {
 			
 			foreach ($get->result as $row)
 			{
-				$action = ' <a  title="Edit" id="'.$row->id_job_analyst.'" class="edit '.$row->id_job_analyst.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
+				$action = '<a title="Edit" id="'.$row->id_job_analyst.'" class="edit '.$row->id_job_analyst.'-edit" href="#"><i class="fa fa-pencil font-larger font-yellow-crusta"></i></a>&nbsp;
 							<a title="Delete" id="'.$row->id_job_analyst.'" class="delete '.$row->id_job_analyst.'-delete" href="#"><i class="fa fa-times font-larger font-red-thunderbird"></i></a>';
 				
 				$entry = array(

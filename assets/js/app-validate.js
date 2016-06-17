@@ -382,6 +382,13 @@ $(function () {
                     success: function(data)
                     {
                         var response = $.parseJSON(data);
+                        
+                        new PNotify({
+                            title: response.title,
+                            text: response.msg,
+                            type: response.type
+                        });
+                        
                         if (response.type == 'success')
                         {
                             setTimeout("location.href = '"+response.location+"'",2000);
@@ -455,6 +462,13 @@ $(function () {
                     success: function(data)
                     {
                         var response = $.parseJSON(data);
+                        
+                        new PNotify({
+                            title: response.title,
+                            text: response.msg,
+                            type: response.type
+                        });
+                        
                         if (response.type == 'success')
                         {
                             setTimeout("location.href = '"+response.location+"'",2000);
