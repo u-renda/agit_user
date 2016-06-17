@@ -174,6 +174,32 @@ if ( ! function_exists('check_position_name')) {
 
 /*
 +-------------------------------------+
+    Name: check_project_type_name
+    Purpose: cek project type name sudah terdaftar atau belum
+    @param return : TRUE atau FALSE
++-------------------------------------+
+*/
+if ( ! function_exists('check_project_type_name')) {
+    function check_project_type_name($param)
+	{
+        $CI =& get_instance();
+        $CI->load->model('project_type_model');
+        
+		$get = $CI->project_type_model->info(array('name' => $param));
+		
+		if ($get->code == 200)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+    }
+}
+
+/*
++-------------------------------------+
     Name: check_user_email
     Purpose: cek email sudah terdaftar atau belum
     @param return : TRUE atau FALSE

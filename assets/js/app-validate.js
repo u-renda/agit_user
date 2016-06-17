@@ -42,6 +42,9 @@ $(function () {
                     },
                     end_date: {
                         required:"Please insert timeline to."
+                    },
+                    name_group: {
+                        required:"Please insert name group."
                     }
                 },
                 invalidHandler: function(e, r) {
@@ -193,7 +196,7 @@ $(function () {
                         url: newPathname + "check_company_name",
                         type: "post",
                         data: {
-                            email: function() {
+                            name: function() {
                                 return $("#name").val();
                             }
                         }
@@ -203,6 +206,86 @@ $(function () {
             messages: {
                 name: {
                     required:"Please insert company name.",
+                    remote: "Name already exist"
+                }
+            },
+            invalidHandler:function(e, t) {
+                i.hide(), r.show(), App.scrollTo(r, -200)
+            },
+            errorPlacement:function(e, r) {
+                r.is(":checkbox")?e.insertAfter(r.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline")): r.is(":radio")?e.insertAfter(r.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline")): e.insertAfter(r)
+            },
+            highlight:function(e) {
+                $(e).closest(".form-group").addClass("has-error")
+            },
+            unhighlight:function(e) {
+                $(e).closest(".form-group").removeClass("has-error")
+            },
+            success:function(e) {
+                e.closest(".form-group").removeClass("has-error")
+            },
+            submitHandler:function(e) {
+                i.show(), r.hide();
+                $('.modal-title').text('Please wait...');
+                $('.modal-body').html('<i class="fa fa-spinner fa-spin" style="font-size: 34px;"></i>');
+                $('.modal-dialog').addClass('modal-sm');
+                $('#myModal').modal('show');
+                $.ajax(
+                {
+                    type: "POST",
+                    url: e.action,
+                    data: $(e).serialize(), 
+                    cache: false,
+                    success: function(data)
+                    {
+                        var response = $.parseJSON(data);
+                        
+                        new PNotify({
+                            title: response.title,
+                            text: response.msg,
+                            type: response.type
+                        });
+                        
+                        if (response.type == 'success')
+                        {
+                            setTimeout("location.href = '"+response.location+"'",2000);
+                        }
+                    }
+                });
+            }
+        });
+        
+        return false;
+    }
+    
+    // Project Type - Create
+    if (document.getElementById('page_project_type_create') != null) {
+        var e=$("#form_project_type_create"),
+            r=$(".alert-danger", e),
+            i=$(".alert-success", e);
+            
+        e.validate( {
+            errorElement:"span",
+            errorClass:"help-block help-block-error",
+            focusInvalid:!1,
+            ignore:"",
+            rules: {
+                name: {
+                    required: true,
+                    remote: {
+                        url: newPathname + "check_project_type_name",
+                        type: "post",
+                        data: {
+                            name: function() {
+                                return $("#name").val();
+                            }
+                        }
+                    }
+                }
+            },
+            messages: {
+                name: {
+                    required:"Please insert project type name.",
                     remote: "Name already exist"
                 }
             },
@@ -273,7 +356,7 @@ $(function () {
                         url: newPathname + "check_position_name",
                         type: "post",
                         data: {
-                            email: function() {
+                            name: function() {
                                 return $("#name").val();
                             }
                         }
@@ -433,7 +516,7 @@ $(function () {
                         url: newPathname + "check_job_role_name",
                         type: "post",
                         data: {
-                            email: function() {
+                            name: function() {
                                 return $("#name").val();
                             }
                         }

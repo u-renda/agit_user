@@ -85,6 +85,7 @@ $route['check_company_name'] = 'extra/check_company_name';
 $route['check_job_analyst_name'] = 'extra/check_job_analyst_name';
 $route['check_job_role_name'] = 'extra/check_job_role_name';
 $route['check_position_name'] = 'extra/check_position_name';
+$route['check_project_type_name'] = 'extra/check_project_type_name';
 $route['set_session_id_project'] = 'extra/set_session_id_project';
 
 // USER
@@ -120,6 +121,7 @@ $route['job_role_get'] = 'job_role/job_role_get';
 // PROJECT TYPE
 $route['project_type_create'] = 'project_type/project_type_create';
 $route['project_type_delete'] = 'project_type/project_type_delete';
+$route['project_type_edit'] = 'project_type/project_type_edit';
 $route['project_type_get'] = 'project_type/project_type_get';
 
 // PO NAME

@@ -71,6 +71,22 @@ class Extra extends CI_Controller {
             echo 'true';
         }
 	}
+	
+	function check_project_type_name()
+	{
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_project_type_name($name);
+	
+		if ($get == FALSE && $selfname != $name)
+		{
+			echo 'false';
+		}
+		else
+		{
+            echo 'true';
+        }
+	}
 
     function set_session_id_project()
 	{
