@@ -269,7 +269,7 @@ $(function () {
                     $('.'+id+'-edit').html('<i class="fa fa-pencil font-larger font-yellow-crusta"></i>');
                     $('.modal-dialog').removeClass('modal-sm');
                     $('.modal-dialog').removeClass('modal-lg');
-                    $('.modal-title').text('Company Edit');
+                    $('.modal-title').text('Position Edit');
                     $('.modal-body').html(data);
                     $('#myModal').modal('show');
                 }
@@ -328,7 +328,7 @@ $(function () {
                     $('.'+id+'-edit').html('<i class="fa fa-pencil font-larger font-yellow-crusta"></i>');
                     $('.modal-dialog').removeClass('modal-sm');
                     $('.modal-dialog').removeClass('modal-lg');
-                    $('.modal-title').text('Company Edit');
+                    $('.modal-title').text('Project Type Edit');
                     $('.modal-body').html(data);
                     $('#myModal').modal('show');
                 }
@@ -368,6 +368,34 @@ $(function () {
     
     // PO Name
     if (document.getElementById('page_po_name') != null) {
+        // EDIT
+        $(this).delegate(".edit", "click", function() {
+            var id = $(this).attr("id");
+            var action = "po_name_edit";
+            var dataString = 'id='+ id;
+            $.ajax({
+                type : "POST",
+                url : newPathname + action,
+                data: dataString, 
+                cache: false,
+                beforeSend: function()
+                {
+                    $('.'+id+'-edit').html('<i class="fa fa-spinner fa-spin"></i>');
+                },
+                success: function(data)
+                {
+                    $('.'+id+'-edit').html('<i class="fa fa-pencil font-larger font-yellow-crusta"></i>');
+                    $('.modal-dialog').removeClass('modal-sm');
+                    $('.modal-dialog').removeClass('modal-lg');
+                    $('.modal-title').text('PO Name Edit');
+                    $('.modal-body').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+            return false;
+        });
+        
+        // DELETE
         $(this).delegate(".delete", "click", function() {
             var id = $(this).attr("id");
             var action = "po_name_delete";

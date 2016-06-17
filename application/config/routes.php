@@ -84,6 +84,7 @@ $route['project_timeline_get'] = 'project/project_timeline_get';
 $route['check_company_name'] = 'extra/check_company_name';
 $route['check_job_analyst_name'] = 'extra/check_job_analyst_name';
 $route['check_job_role_name'] = 'extra/check_job_role_name';
+$route['check_po_name_name'] = 'extra/check_po_name_name';
 $route['check_position_name'] = 'extra/check_position_name';
 $route['check_project_type_name'] = 'extra/check_project_type_name';
 $route['set_session_id_project'] = 'extra/set_session_id_project';
@@ -127,4 +128,5 @@ $route['project_type_get'] = 'project_type/project_type_get';
 // PO NAME
 $route['po_name_create'] = 'po_name/po_name_create';
 $route['po_name_delete'] = 'po_name/po_name_delete';
+$route['po_name_edit'] = 'po_name/po_name_edit';
 $route['po_name_get'] = 'po_name/po_name_get';

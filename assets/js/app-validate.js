@@ -418,6 +418,86 @@ $(function () {
         return false;
     }
     
+    // PO Name - Create
+    if (document.getElementById('page_po_name_create') != null) {
+        var e=$("#form_po_name_create"),
+            r=$(".alert-danger", e),
+            i=$(".alert-success", e);
+            
+        e.validate( {
+            errorElement:"span",
+            errorClass:"help-block help-block-error",
+            focusInvalid:!1,
+            ignore:"",
+            rules: {
+                name: {
+                    required: true,
+                    remote: {
+                        url: newPathname + "check_po_name_name",
+                        type: "post",
+                        data: {
+                            name: function() {
+                                return $("#name").val();
+                            }
+                        }
+                    }
+                }
+            },
+            messages: {
+                name: {
+                    required:"Please insert PO name.",
+                    remote: "Name already exist"
+                }
+            },
+            invalidHandler:function(e, t) {
+                i.hide(), r.show(), App.scrollTo(r, -200)
+            },
+            errorPlacement:function(e, r) {
+                r.is(":checkbox")?e.insertAfter(r.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline")): r.is(":radio")?e.insertAfter(r.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline")): e.insertAfter(r)
+            },
+            highlight:function(e) {
+                $(e).closest(".form-group").addClass("has-error")
+            },
+            unhighlight:function(e) {
+                $(e).closest(".form-group").removeClass("has-error")
+            },
+            success:function(e) {
+                e.closest(".form-group").removeClass("has-error")
+            },
+            submitHandler:function(e) {
+                i.show(), r.hide();
+                $('.modal-title').text('Please wait...');
+                $('.modal-body').html('<i class="fa fa-spinner fa-spin" style="font-size: 34px;"></i>');
+                $('.modal-dialog').addClass('modal-sm');
+                $('#myModal').modal('show');
+                $.ajax(
+                {
+                    type: "POST",
+                    url: e.action,
+                    data: $(e).serialize(), 
+                    cache: false,
+                    success: function(data)
+                    {
+                        var response = $.parseJSON(data);
+                        
+                        new PNotify({
+                            title: response.title,
+                            text: response.msg,
+                            type: response.type
+                        });
+                        
+                        if (response.type == 'success')
+                        {
+                            setTimeout("location.href = '"+response.location+"'",2000);
+                        }
+                    }
+                });
+            }
+        });
+        
+        return false;
+    }
+    
     // Job Analyst - Create
     if (document.getElementById('page_job_analyst_create') != null) {
         var e=$("#form_job_analyst_create"),

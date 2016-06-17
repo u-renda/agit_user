@@ -148,6 +148,32 @@ if ( ! function_exists('check_job_role_name')) {
 
 /*
 +-------------------------------------+
+    Name: check_po_name_name
+    Purpose: cek PO name sudah terdaftar atau belum
+    @param return : TRUE atau FALSE
++-------------------------------------+
+*/
+if ( ! function_exists('check_po_name_name')) {
+    function check_po_name_name($param)
+	{
+        $CI =& get_instance();
+        $CI->load->model('po_name_model');
+        
+		$get = $CI->po_name_model->info(array('name' => $param));
+		
+		if ($get->code == 200)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+    }
+}
+
+/*
++-------------------------------------+
     Name: check_position_name
     Purpose: cek position name sudah terdaftar atau belum
     @param return : TRUE atau FALSE

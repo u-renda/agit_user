@@ -56,6 +56,22 @@ class Extra extends CI_Controller {
         }
 	}
 	
+	function check_po_name_name()
+	{
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_po_name_name($name);
+	
+		if ($get == FALSE && $selfname != $name)
+		{
+			echo 'false';
+		}
+		else
+		{
+            echo 'true';
+        }
+	}
+	
 	function check_position_name()
 	{
 		$selfname = $this->input->post('selfname');
