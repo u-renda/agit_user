@@ -87,6 +87,9 @@ $route['check_job_role_name'] = 'extra/check_job_role_name';
 $route['check_po_name_name'] = 'extra/check_po_name_name';
 $route['check_position_name'] = 'extra/check_position_name';
 $route['check_project_type_name'] = 'extra/check_project_type_name';
+$route['check_user_email'] = 'extra/check_user_email';
+$route['check_user_name'] = 'extra/check_user_name';
+$route['check_user_username'] = 'extra/check_user_username';
 $route['set_session_id_project'] = 'extra/set_session_id_project';
 
 // USER

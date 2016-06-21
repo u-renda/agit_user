@@ -40,6 +40,7 @@ class Company extends CI_Controller {
 		
 		if ($this->input->post('submit') == TRUE)
 		{
+			$this->form_validation->set_error_delimiters('<span class="help-block help-block-error">', '</span>');
 			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_company_name');
 			
 			if ($this->form_validation->run() == FALSE)
@@ -118,9 +119,14 @@ class Company extends CI_Controller {
 		{
 			if ($this->input->post('submit') == TRUE)
 			{
+				$this->form_validation->set_error_delimiters('<span class="help-block help-block-error">', '</span>');
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_company_name');
 				
-				if ($this->form_validation->run() == TRUE)
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['error'] = validation_errors();
+				}
+				else
 				{
 					$param = array();
 					$param['id_company'] = $data['id'];

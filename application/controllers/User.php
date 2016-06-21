@@ -1,4 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+
 class User extends CI_Controller {
 	
 	function __construct()
@@ -10,6 +11,7 @@ class User extends CI_Controller {
 		$this->load->model('position_model');
 		$this->load->model('user_model');
 	}
+	
     function check_photo()
     {
         if (isset($_FILES['photo']))
@@ -19,13 +21,15 @@ class User extends CI_Controller {
                 $name = md5(basename($_FILES["photo"]["name"]) . date('Y-m-d H:i:s'));
                 $target_dir = UPLOAD_USER_HOST;
                 $imageFileType = strtolower(pathinfo($_FILES["photo"]["name"],PATHINFO_EXTENSION));
-                $param2 = array();
+                
+				$param2 = array();
                 $param2['target_file'] = UPLOAD_FOLDER . $name . '.' . $imageFileType;
                 $param2['imageFileType'] = $imageFileType;
                 $param2['tmp_name'] = $_FILES["photo"]["tmp_name"];
                 $param2['tmp_file'] = $target_dir . $name . '.' . $imageFileType;
                 $param2['size'] = $_FILES["photo"]["size"];
                 $check_image = check_image($param2);
+				
                 if ($check_image == 'true')
                 {
                     return TRUE;
@@ -39,11 +43,13 @@ class User extends CI_Controller {
         }
     }
 	
-	function check_user_email($param)
+	function check_user_email()
 	{
-		$get = check_user_email($param);
+		$selfemail = $this->input->post('selfemail');
+		$email = $this->input->post('email');
+		$get = check_user_email($email);
 		
-        if ($get == TRUE)
+        if ($get == FALSE && $selfemail != $email)
         {
             $this->form_validation->set_message('check_user_email', '%s already exist');
             return FALSE;
@@ -56,9 +62,11 @@ class User extends CI_Controller {
 	
 	function check_user_name()
 	{
-		$get = check_user_name($this->input->post('name'));
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_user_name($name);
 		
-        if ($get == TRUE)
+        if ($get == FALSE && $selfname != $name)
         {
             $this->form_validation->set_message('check_user_name', '%s already exist');
             return FALSE;
@@ -69,11 +77,13 @@ class User extends CI_Controller {
         }
 	}
 	
-	function check_user_username($param)
+	function check_user_username()
 	{
-		$get = check_user_username($param);
+		$selfusername = $this->input->post('selfusername');
+		$username = $this->input->post('username');
+		$get = check_user_username($username);
 		
-		if ($get == TRUE)
+		if ($get == FALSE && $selfusername != $username)
 		{
 			$this->form_validation->set_message('check_user_username', '%s already exist');
 			return FALSE;
@@ -95,7 +105,7 @@ class User extends CI_Controller {
 	{
 		if ($this->input->post('submit') == TRUE)
 		{
-			$this->form_validation->set_error_delimiters('<div class="font-red-flamingo">', '</div>');
+			$this->form_validation->set_error_delimiters('<span class="help-block help-block-error">', '</span>');
 			$this->form_validation->set_rules('id_position', 'Position', 'required');
 			$this->form_validation->set_rules('id_company', 'Company', 'required');
 			$this->form_validation->set_rules('id_po_name', 'PO Name', 'required');
@@ -109,7 +119,7 @@ class User extends CI_Controller {
 			
 			if ($this->form_validation->run() == TRUE)
 			{
-				print_r($this->input->post());die();
+				$photo = '';
 				if (isset($_FILES['photo']))
                 {
                     if ($_FILES["photo"]["error"] == 0)
@@ -133,14 +143,16 @@ class User extends CI_Controller {
 				$param['nik'] = $this->input->post('nik');
 				$param['photo'] = $photo;
 				$query = $this->user_model->create($param);
+				
 				if ($query->code == 200)
 				{
-					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'));
+					$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'), 'title' => 'User');
 				}
 				else
 				{
-					$response =  array('msg' => 'Create data failed', 'type' => 'error');
+					$response =  array('msg' => 'Create data failed', 'type' => 'error', 'title' => 'User');
 				}
+				
 				echo json_encode($response);
 				exit();
 			}
@@ -158,43 +170,32 @@ class User extends CI_Controller {
 	function user_edit()
 	{
 		$data = array();
-		if (!empty($this->input->post('id_user')))
-		{
-			$data['id'] = $this->input->post("id_user");
-		}
-		else
-		{
-			$data['id'] = $this->input->get("id");
-		}
+		$data['id'] = $this->input->get_post('id');
 		$query = $this->user_model->info(array('id_user' => $data['id']));
 		
 		if ($query->code == 200)
 		{
-			
 			if ($this->input->post('submit') == TRUE)
 			{
-				
-				$this->form_validation->set_error_delimiters('<div class="font-red-flamingo">', '</div>');
+				$this->form_validation->set_error_delimiters('<span class="help-block help-block-error">', '</span>');
 				$this->form_validation->set_rules('id_position', 'Position', 'required');
 				$this->form_validation->set_rules('id_company', 'Company', 'required');
 				$this->form_validation->set_rules('id_po_name', 'PO Name', 'required');
 				$this->form_validation->set_rules('id_user_project_group', 'Project group', 'required');
+				$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email');
+				$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_user_name');
 				$this->form_validation->set_rules('role', 'Role', 'required');
 				$this->form_validation->set_rules('photo', 'photo', 'callback_check_photo');
 				
-				if ($this->input->post('username') != $this->input->post('username_old'))
+				if ($this->form_validation->run() == FALSE)
 				{
-					$this->form_validation->set_rules('username', 'Username', 'required|callback_check_user_username');
+					$data['error'] = validation_errors();
 				}
-				if ($this->input->post('email') != $this->input->post('email_old'))
+				else
 				{
-					$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_check_user_email'); 
-				}
-				
-				if ($this->form_validation->run() == TRUE)
-				{
-					if ((isset($_FILES['photo']))&&($_FILES['photo']!=null))
+					$photo = '';
+					if (isset($_FILES['photo']))
 					{
 						if ($_FILES["photo"]["error"] == 0)
 						{
@@ -203,11 +204,13 @@ class User extends CI_Controller {
 							$photo = UPLOAD_USER_HOST . $name . '.' . $imageFileType;
 						}
 					}
+					
 					$param = array();
 					if ( ! empty($this->input->post('password')))
 					{
 						$param['password'] = $this->input->post('password');
 					}
+					
 					$param['id_user'] = $this->input->post('id_user');
 					$param['id_position'] = $this->input->post('id_position');
 					$param['id_company'] = $this->input->post('id_company');
@@ -218,22 +221,20 @@ class User extends CI_Controller {
 					$param['name'] = $this->input->post('name');
 					$param['role'] = $this->input->post('role');
 					$param['nik'] = $this->input->post('nik');
-					//$param['photo'] = $photo;
+					$param['photo'] = $photo;
 					$query = $this->user_model->update($param);
+					
 					if ($query->code == 200)
 					{
-						$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'));
+						$response =  array('msg' => 'Create data success', 'type' => 'success', 'location' => $this->config->item('link_user'), 'title' => 'User');
 					}
 					else
 					{
-						$response =  array('msg' => 'Create data failed', 'type' => 'error');
+						$response =  array('msg' => 'Create data failed', 'type' => 'error', 'title' => 'User');
 					}
+					
 					echo json_encode($response);
 					exit();
-				}
-				else
-				{
-					echo "disini";die();
 				}
 			}
 			
@@ -248,7 +249,7 @@ class User extends CI_Controller {
 		}
 		else
 		{
-			redirect($this->config->item('link_user'));
+			echo "Data Not Found";
 		}
 	}
 	

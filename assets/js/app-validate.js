@@ -657,4 +657,16 @@ $(function () {
         
         return false;
     }
+    
+    // User - Create
+    if (document.getElementById('page_user_create') != null) {
+        //var e=$("#form_user_create");
+        
+        $(this).delegate("#button_create", "click", function() {
+            $('.modal-title').text('Please wait...');
+            $('.modal-body').html('<i class="fa fa-spinner fa-spin" style="font-size: 34px;"></i>');
+            $('.modal-dialog').addClass('modal-sm');
+            $('#myModal').modal('show');
+        });
+    }
 });

@@ -43,7 +43,7 @@
                                     <label class="control-label col-md-3">Name<span class="required"> * </span></label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="name" id="name" value="<?php echo set_value('name'); ?>" />
-                                        <?php echo '<span class="help-block help-block-error">'.form_error('name').'</span>'; ?>
+                                        <?php echo form_error('name'); ?>
                                         <div class="form-control-focus"></div>
                                     </div>
                                 </div>

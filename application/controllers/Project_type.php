@@ -40,6 +40,7 @@ class Project_type extends CI_Controller {
 		
 		if ($this->input->post('submit') == TRUE)
 		{
+			$this->form_validation->set_error_delimiters('<span class="help-block help-block-error">', '</span>');
 			$this->form_validation->set_rules('name', 'Name', 'required|callback_check_project_type_name');
 			
 			if ($this->form_validation->run() == FALSE)
@@ -118,6 +119,7 @@ class Project_type extends CI_Controller {
 		{
 			if ($this->input->post('submit') == TRUE)
 			{
+				$this->form_validation->set_error_delimiters('<span class="help-block help-block-error">', '</span>');
 				$this->form_validation->set_rules('name', 'Name', 'required|callback_check_project_type_name');
 				
 				if ($this->form_validation->run() == TRUE)

@@ -103,6 +103,54 @@ class Extra extends CI_Controller {
             echo 'true';
         }
 	}
+	
+	function check_user_email()
+	{
+		$selfemail = $this->input->post('selfemail');
+		$email = $this->input->post('email');
+		$get = check_user_email($email);
+		
+        if ($get == FALSE && $selfemail != $email)
+        {
+            echo 'false';
+        }
+        else
+        {
+            echo 'true';
+        }
+	}
+	
+	function check_user_name()
+	{
+		$selfname = $this->input->post('selfname');
+		$name = $this->input->post('name');
+		$get = check_user_name($name);
+		
+        if ($get == FALSE && $selfname != $name)
+        {
+            echo 'false';
+        }
+        else
+        {
+            echo 'true';
+        }
+	}
+	
+	function check_user_username()
+	{
+		$selfusername = $this->input->post('selfusername');
+		$username = $this->input->post('username');
+		$get = check_user_username($username);
+		
+		if ($get == FALSE && $selfusername != $username)
+		{
+			echo 'false';
+		}
+		else
+		{
+			echo 'true';
+		}
+	}
 
     function set_session_id_project()
 	{
